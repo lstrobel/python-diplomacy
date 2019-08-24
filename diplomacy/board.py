@@ -14,7 +14,30 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from diplomacy.tile import Tile
+
+
 class Board():
 
-    def __init__(self, map_json):
-        self.__tiles = []
+    def __init__(self, map_dict: dict):
+
+        self.tiles = {}
+
+        # Fill in initial tiles
+        for tile in map_dict['tiles']:
+            self.tiles[tile['id']] = Tile.from_dict(tile)
+
+        self.__verify_tiles()
+
+    def __verify_tiles(self):
+        for tile in self.tiles.values():
+            # Assert equivalent tiles have the same owner and supply center status
+            if len(tile.equivalencies) > 0:
+                for equiv_id in tile.equivalencies:
+                    assert self.tiles[equiv_id].owner == tile.owner, 'Mismatching owners for equivalent tiles'
+                    assert self.tiles[equiv_id].is_supply_center == tile.is_supply_center, \
+                        'Mismatching supply center status for equivalent tiles'
+
+# TODO: Add units in vanilla_1914.json
+# TODO: Reimport pydip because you accidentally deleted the tests
+# TODO: Add tests

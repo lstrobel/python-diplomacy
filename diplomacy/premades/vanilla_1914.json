@@ -1,0 +1,2371 @@
+{
+  "tiles": [
+    {
+      "id": 0,
+      "aliases": {
+        "long_name": "Adriatic Sea",
+        "short_name": "adr"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        10,
+        22,
+        113,
+        105,
+        20
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 1,
+      "aliases": {
+        "long_name": "Aegean Sea",
+        "short_name": "aeg"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        10,
+        53,
+        37,
+        42,
+        93,
+        5
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 2,
+      "aliases": {
+        "long_name": "Baltic Sea",
+        "short_name": "bal"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        101,
+        7,
+        63,
+        80,
+        30,
+        57,
+        44
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 3,
+      "aliases": {
+        "long_name": "Barents Sea",
+        "short_name": "bar"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        15,
+        71,
+        98
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 4,
+      "aliases": {
+        "long_name": "Black Sea",
+        "short_name": "bla"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        42,
+        36,
+        87,
+        91,
+        26,
+        24
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 5,
+      "aliases": {
+        "long_name": "Eastern Mediterranean Sea",
+        "short_name": "eas"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        10,
+        1,
+        93,
+        103
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 6,
+      "aliases": {
+        "long_name": "English Channel",
+        "short_name": "eng"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        12,
+        11,
+        117,
+        59,
+        14,
+        28,
+        74,
+        33
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 7,
+      "aliases": {
+        "long_name": "Gulf of Bothnia",
+        "short_name": "bot"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        2,
+        48,
+        99,
+        63,
+        101
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 8,
+      "aliases": {
+        "long_name": "Gulf of Lyon",
+        "short_name": "lyo"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        18,
+        65,
+        96,
+        76,
+        109,
+        17
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 9,
+      "aliases": {
+        "long_name": "Helgoland Bight",
+        "short_name": "hel"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        14,
+        44,
+        57,
+        55
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 10,
+      "aliases": {
+        "long_name": "Ionian Sea",
+        "short_name": "ion"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        17,
+        107,
+        69,
+        22,
+        0,
+        20,
+        53,
+        1,
+        5
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 11,
+      "aliases": {
+        "long_name": "Irish Sea",
+        "short_name": "iri"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        13,
+        12,
+        6,
+        61,
+        117
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 12,
+      "aliases": {
+        "long_name": "Mid-Atlantic Ocean",
+        "short_name": "mao"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        13,
+        11,
+        6,
+        18,
+        85,
+        95,
+        96,
+        78,
+        50,
+        33
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 13,
+      "aliases": {
+        "long_name": "North Atlantic Ocean",
+        "short_name": "nao"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        15,
+        12,
+        11,
+        40,
+        61
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 14,
+      "aliases": {
+        "long_name": "North Sea",
+        "short_name": "nth"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        15,
+        6,
+        16,
+        9,
+        71,
+        55,
+        28,
+        59,
+        119,
+        46,
+        44
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 15,
+      "aliases": {
+        "long_name": "Norwegian Sea",
+        "short_name": "nwg"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        13,
+        14,
+        3,
+        40,
+        46,
+        71
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 16,
+      "aliases": {
+        "long_name": "Skagerrak",
+        "short_name": "ska"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        14,
+        71,
+        101,
+        44
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 17,
+      "aliases": {
+        "long_name": "Tyrrhenian Sea",
+        "short_name": "tyr"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        18,
+        8,
+        109,
+        82,
+        69,
+        10,
+        107
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 18,
+      "aliases": {
+        "long_name": "Western Mediterranean Sea",
+        "short_name": "wes"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        12,
+        96,
+        8,
+        17,
+        107,
+        85
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 19,
+      "aliases": {
+        "long_name": "Albania",
+        "short_name": "alb"
+      },
+      "equivalencies": [
+        20
+      ],
+      "adjacencies": [
+        104,
+        52,
+        88
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 20,
+      "aliases": {
+        "long_name": "Albania Coast",
+        "short_name": "alb"
+      },
+      "equivalencies": [
+        19
+      ],
+      "adjacencies": [
+        10,
+        0,
+        105,
+        53
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 21,
+      "aliases": {
+        "long_name": "Apulia",
+        "short_name": "apu"
+      },
+      "equivalencies": [
+        22
+      ],
+      "adjacencies": [
+        112,
+        81,
+        68
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 22,
+      "aliases": {
+        "long_name": "Apulia Coast",
+        "short_name": "apu"
+      },
+      "equivalencies": [
+        21
+      ],
+      "adjacencies": [
+        10,
+        0,
+        69,
+        113
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 23,
+      "aliases": {
+        "long_name": "Ankara",
+        "short_name": "ank"
+      },
+      "equivalencies": [
+        24
+      ],
+      "adjacencies": [
+        25,
+        92,
+        41
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Turkey",
+      "unit": null
+    },
+    {
+      "id": 24,
+      "aliases": {
+        "long_name": "Ankara Coast",
+        "short_name": "ank"
+      },
+      "equivalencies": [
+        23
+      ],
+      "adjacencies": [
+        4,
+        42,
+        26
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Turkey",
+      "unit": null
+    },
+    {
+      "id": 25,
+      "aliases": {
+        "long_name": "Armenia",
+        "short_name": "arm"
+      },
+      "equivalencies": [
+        26
+      ],
+      "adjacencies": [
+        90,
+        102,
+        92,
+        23
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 26,
+      "aliases": {
+        "long_name": "Armenia Coast",
+        "short_name": "arm"
+      },
+      "equivalencies": [
+        25
+      ],
+      "adjacencies": [
+        4,
+        24,
+        91
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 27,
+      "aliases": {
+        "long_name": "Belgium",
+        "short_name": "bel"
+      },
+      "equivalencies": [
+        28
+      ],
+      "adjacencies": [
+        54,
+        83,
+        38,
+        73
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 28,
+      "aliases": {
+        "long_name": "Belgium Coast",
+        "short_name": "bel"
+      },
+      "equivalencies": [
+        27
+      ],
+      "adjacencies": [
+        6,
+        14,
+        55,
+        74
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 29,
+      "aliases": {
+        "long_name": "Berlin",
+        "short_name": "ber"
+      },
+      "equivalencies": [
+        30
+      ],
+      "adjacencies": [
+        89,
+        79,
+        56,
+        67
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Germany",
+      "unit": null
+    },
+    {
+      "id": 30,
+      "aliases": {
+        "long_name": "Berlin Coast",
+        "short_name": "ber"
+      },
+      "equivalencies": [
+        29
+      ],
+      "adjacencies": [
+        2,
+        80,
+        57
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Germany",
+      "unit": null
+    },
+    {
+      "id": 31,
+      "aliases": {
+        "long_name": "Bohemia",
+        "short_name": "boh"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        51,
+        89,
+        67,
+        110,
+        114
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 32,
+      "aliases": {
+        "long_name": "Brest",
+        "short_name": "bre"
+      },
+      "equivalencies": [
+        33
+      ],
+      "adjacencies": [
+        73,
+        49,
+        72
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "France",
+      "unit": null
+    },
+    {
+      "id": 33,
+      "aliases": {
+        "long_name": "Brest Coast",
+        "short_name": "bre"
+      },
+      "equivalencies": [
+        32
+      ],
+      "adjacencies": [
+        12,
+        6,
+        74,
+        50
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "France",
+      "unit": null
+    },
+    {
+      "id": 34,
+      "aliases": {
+        "long_name": "Budapest",
+        "short_name": "bud"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        86,
+        88,
+        104,
+        114,
+        51
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Austria",
+      "unit": null
+    },
+    {
+      "id": 35,
+      "aliases": {
+        "long_name": "Bulgaria",
+        "short_name": "bul"
+      },
+      "equivalencies": [
+        36,
+        37
+      ],
+      "adjacencies": [
+        41,
+        86,
+        52,
+        88
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 36,
+      "aliases": {
+        "long_name": "Bulgaria North Coast",
+        "short_name": "bul_nc"
+      },
+      "equivalencies": [
+        35,
+        37
+      ],
+      "adjacencies": [
+        4,
+        42,
+        87
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 37,
+      "aliases": {
+        "long_name": "Bulgaria South Coast",
+        "short_name": "bul_sc"
+      },
+      "equivalencies": [
+        35,
+        36
+      ],
+      "adjacencies": [
+        1,
+        53,
+        42
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 38,
+      "aliases": {
+        "long_name": "Burgundy",
+        "short_name": "bur"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        67,
+        27,
+        83,
+        64,
+        49,
+        72,
+        73
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 39,
+      "aliases": {
+        "long_name": "Clyde",
+        "short_name": "cly"
+      },
+      "equivalencies": [
+        40
+      ],
+      "adjacencies": [
+        45,
+        60
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 40,
+      "aliases": {
+        "long_name": "Clyde Coast",
+        "short_name": "cly"
+      },
+      "equivalencies": [
+        39
+      ],
+      "adjacencies": [
+        13,
+        15,
+        46,
+        61
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 41,
+      "aliases": {
+        "long_name": "Constantinople",
+        "short_name": "con"
+      },
+      "equivalencies": [
+        42
+      ],
+      "adjacencies": [
+        23,
+        92,
+        35
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Turkey",
+      "unit": null
+    },
+    {
+      "id": 42,
+      "aliases": {
+        "long_name": "Constantinople Coast",
+        "short_name": "con"
+      },
+      "equivalencies": [
+        41
+      ],
+      "adjacencies": [
+        1,
+        4,
+        37,
+        36,
+        24,
+        93
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Turkey",
+      "unit": null
+    },
+    {
+      "id": 43,
+      "aliases": {
+        "long_name": "Denmark",
+        "short_name": "den"
+      },
+      "equivalencies": [
+        44
+      ],
+      "adjacencies": [
+        100,
+        56
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 44,
+      "aliases": {
+        "long_name": "Denmark Coast",
+        "short_name": "den"
+      },
+      "equivalencies": [
+        43
+      ],
+      "adjacencies": [
+        14,
+        16,
+        9,
+        2,
+        101,
+        57
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 45,
+      "aliases": {
+        "long_name": "Edinburgh",
+        "short_name": "edi"
+      },
+      "equivalencies": [
+        46
+      ],
+      "adjacencies": [
+        39,
+        60,
+        118
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "England",
+      "unit": null
+    },
+    {
+      "id": 46,
+      "aliases": {
+        "long_name": "Edinburgh Coast",
+        "short_name": "edi"
+      },
+      "equivalencies": [
+        45
+      ],
+      "adjacencies": [
+        15,
+        14,
+        40,
+        119
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "England",
+      "unit": null
+    },
+    {
+      "id": 47,
+      "aliases": {
+        "long_name": "Finland",
+        "short_name": "fin"
+      },
+      "equivalencies": [
+        48
+      ],
+      "adjacencies": [
+        70,
+        100,
+        97
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 48,
+      "aliases": {
+        "long_name": "Finland Coast",
+        "short_name": "fin"
+      },
+      "equivalencies": [
+        47
+      ],
+      "adjacencies": [
+        7,
+        101,
+        99
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 49,
+      "aliases": {
+        "long_name": "Gascony",
+        "short_name": "gas"
+      },
+      "equivalencies": [
+        50
+      ],
+      "adjacencies": [
+        38,
+        32,
+        72,
+        64,
+        94
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 50,
+      "aliases": {
+        "long_name": "Gascony Coast",
+        "short_name": "gas"
+      },
+      "equivalencies": [
+        49
+      ],
+      "adjacencies": [
+        12,
+        33,
+        95
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 51,
+      "aliases": {
+        "long_name": "Galicia",
+        "short_name": "gal"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        115,
+        111,
+        86,
+        34,
+        114,
+        31,
+        89
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 52,
+      "aliases": {
+        "long_name": "Greece",
+        "short_name": "gre"
+      },
+      "equivalencies": [
+        53
+      ],
+      "adjacencies": [
+        35,
+        19,
+        88
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 53,
+      "aliases": {
+        "long_name": "Greece Coast",
+        "short_name": "gre"
+      },
+      "equivalencies": [
+        52
+      ],
+      "adjacencies": [
+        10,
+        1,
+        20,
+        37
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 54,
+      "aliases": {
+        "long_name": "Holland",
+        "short_name": "hol"
+      },
+      "equivalencies": [
+        55
+      ],
+      "adjacencies": [
+        56,
+        83,
+        27
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 55,
+      "aliases": {
+        "long_name": "Holland Coast",
+        "short_name": "hol"
+      },
+      "equivalencies": [
+        54
+      ],
+      "adjacencies": [
+        14,
+        9,
+        57,
+        28
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 56,
+      "aliases": {
+        "long_name": "Kiel",
+        "short_name": "kie"
+      },
+      "equivalencies": [
+        57
+      ],
+      "adjacencies": [
+        43,
+        29,
+        67,
+        83,
+        54
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Germany",
+      "unit": null
+    },
+    {
+      "id": 57,
+      "aliases": {
+        "long_name": "Kiel Coast",
+        "short_name": "kie"
+      },
+      "equivalencies": [
+        56
+      ],
+      "adjacencies": [
+        9,
+        2,
+        44,
+        30,
+        55
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Germany",
+      "unit": null
+    },
+    {
+      "id": 58,
+      "aliases": {
+        "long_name": "London",
+        "short_name": "lon"
+      },
+      "equivalencies": [
+        59
+      ],
+      "adjacencies": [
+        116,
+        118
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "England",
+      "unit": null
+    },
+    {
+      "id": 59,
+      "aliases": {
+        "long_name": "London Coast",
+        "short_name": "lon"
+      },
+      "equivalencies": [
+        58
+      ],
+      "adjacencies": [
+        6,
+        14,
+        117,
+        119
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "England",
+      "unit": null
+    },
+    {
+      "id": 60,
+      "aliases": {
+        "long_name": "Liverpool",
+        "short_name": "lvp"
+      },
+      "equivalencies": [
+        61
+      ],
+      "adjacencies": [
+        39,
+        45,
+        118,
+        116
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "England",
+      "unit": null
+    },
+    {
+      "id": 61,
+      "aliases": {
+        "long_name": "Liverpool Coast",
+        "short_name": "lvp"
+      },
+      "equivalencies": [
+        60
+      ],
+      "adjacencies": [
+        13,
+        11,
+        40,
+        117
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "England",
+      "unit": null
+    },
+    {
+      "id": 62,
+      "aliases": {
+        "long_name": "Livonia",
+        "short_name": "lvn"
+      },
+      "equivalencies": [
+        63
+      ],
+      "adjacencies": [
+        97,
+        66,
+        115,
+        79
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 63,
+      "aliases": {
+        "long_name": "Livonia Coast",
+        "short_name": "lvn"
+      },
+      "equivalencies": [
+        62
+      ],
+      "adjacencies": [
+        2,
+        7,
+        99,
+        80
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 64,
+      "aliases": {
+        "long_name": "Marseilles",
+        "short_name": "mar"
+      },
+      "equivalencies": [
+        65
+      ],
+      "adjacencies": [
+        38,
+        49,
+        94,
+        75
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "France",
+      "unit": null
+    },
+    {
+      "id": 65,
+      "aliases": {
+        "long_name": "Marseilles Coast",
+        "short_name": "mar"
+      },
+      "equivalencies": [
+        64
+      ],
+      "adjacencies": [
+        8,
+        96,
+        76
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "France",
+      "unit": null
+    },
+    {
+      "id": 66,
+      "aliases": {
+        "long_name": "Moscow",
+        "short_name": "mos"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        97,
+        62,
+        115,
+        111,
+        90
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Russia",
+      "unit": null
+    },
+    {
+      "id": 67,
+      "aliases": {
+        "long_name": "Munich",
+        "short_name": "mun"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        89,
+        29,
+        56,
+        83,
+        38,
+        110,
+        31
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Germany",
+      "unit": null
+    },
+    {
+      "id": 68,
+      "aliases": {
+        "long_name": "Naples",
+        "short_name": "nap"
+      },
+      "equivalencies": [
+        69
+      ],
+      "adjacencies": [
+        81,
+        21
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Italy",
+      "unit": null
+    },
+    {
+      "id": 69,
+      "aliases": {
+        "long_name": "Naples Coast",
+        "short_name": "nap"
+      },
+      "equivalencies": [
+        68
+      ],
+      "adjacencies": [
+        17,
+        10,
+        82,
+        22
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Italy",
+      "unit": null
+    },
+    {
+      "id": 70,
+      "aliases": {
+        "long_name": "Norway",
+        "short_name": "nor"
+      },
+      "equivalencies": [
+        71
+      ],
+      "adjacencies": [
+        100,
+        47,
+        97
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 71,
+      "aliases": {
+        "long_name": "Norway Coast",
+        "short_name": "nor"
+      },
+      "equivalencies": [
+        70
+      ],
+      "adjacencies": [
+        15,
+        3,
+        14,
+        16,
+        101,
+        98
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 72,
+      "aliases": {
+        "long_name": "Paris",
+        "short_name": "par"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        38,
+        73,
+        32,
+        49
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "France",
+      "unit": null
+    },
+    {
+      "id": 73,
+      "aliases": {
+        "long_name": "Picardy",
+        "short_name": "pic"
+      },
+      "equivalencies": [
+        74
+      ],
+      "adjacencies": [
+        27,
+        38,
+        72,
+        32
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 74,
+      "aliases": {
+        "long_name": "Picardy Coast",
+        "short_name": "pic"
+      },
+      "equivalencies": [
+        73
+      ],
+      "adjacencies": [
+        6,
+        28,
+        33
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 75,
+      "aliases": {
+        "long_name": "Piedmont",
+        "short_name": "pie"
+      },
+      "equivalencies": [
+        76
+      ],
+      "adjacencies": [
+        64,
+        108,
+        112,
+        110
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 76,
+      "aliases": {
+        "long_name": "Piedmont Coast",
+        "short_name": "pie"
+      },
+      "equivalencies": [
+        75
+      ],
+      "adjacencies": [
+        8,
+        65,
+        109
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 77,
+      "aliases": {
+        "long_name": "Portugal",
+        "short_name": "por"
+      },
+      "equivalencies": [
+        78
+      ],
+      "adjacencies": [
+        94
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 78,
+      "aliases": {
+        "long_name": "Portugal Coast",
+        "short_name": "por"
+      },
+      "equivalencies": [
+        77
+      ],
+      "adjacencies": [
+        12,
+        95,
+        96
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 79,
+      "aliases": {
+        "long_name": "Prussia",
+        "short_name": "pru"
+      },
+      "equivalencies": [
+        80
+      ],
+      "adjacencies": [
+        62,
+        115,
+        89,
+        29
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 80,
+      "aliases": {
+        "long_name": "Prussia Coast",
+        "short_name": "pru"
+      },
+      "equivalencies": [
+        79
+      ],
+      "adjacencies": [
+        2,
+        63,
+        30
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 81,
+      "aliases": {
+        "long_name": "Rome",
+        "short_name": "rom"
+      },
+      "equivalencies": [
+        82
+      ],
+      "adjacencies": [
+        108,
+        112,
+        21,
+        68
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Italy",
+      "unit": null
+    },
+    {
+      "id": 82,
+      "aliases": {
+        "long_name": "Rome Coast",
+        "short_name": "rom"
+      },
+      "equivalencies": [
+        81
+      ],
+      "adjacencies": [
+        17,
+        109,
+        69
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Italy",
+      "unit": null
+    },
+    {
+      "id": 83,
+      "aliases": {
+        "long_name": "Ruhr",
+        "short_name": "ruh"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        67,
+        56,
+        54,
+        27,
+        38
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 84,
+      "aliases": {
+        "long_name": "North Africa",
+        "short_name": "naf"
+      },
+      "equivalencies": [
+        85
+      ],
+      "adjacencies": [
+        106
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 85,
+      "aliases": {
+        "long_name": "North Africa Coast",
+        "short_name": "naf"
+      },
+      "equivalencies": [
+        84
+      ],
+      "adjacencies": [
+        12,
+        18,
+        107
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 86,
+      "aliases": {
+        "long_name": "Rumania",
+        "short_name": "rum"
+      },
+      "equivalencies": [
+        87
+      ],
+      "adjacencies": [
+        111,
+        90,
+        35,
+        51,
+        34,
+        88
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 87,
+      "aliases": {
+        "long_name": "Rumania Coast",
+        "short_name": "rum"
+      },
+      "equivalencies": [
+        86
+      ],
+      "adjacencies": [
+        4,
+        91,
+        36
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 88,
+      "aliases": {
+        "long_name": "Serbia",
+        "short_name": "ser"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        35,
+        86,
+        52,
+        19,
+        104,
+        34
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 89,
+      "aliases": {
+        "long_name": "Silesia",
+        "short_name": "sil"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        115,
+        51,
+        31,
+        67,
+        29,
+        79
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 90,
+      "aliases": {
+        "long_name": "Sevastopol",
+        "short_name": "sev"
+      },
+      "equivalencies": [
+        91
+      ],
+      "adjacencies": [
+        66,
+        111,
+        25,
+        86
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Russia",
+      "unit": null
+    },
+    {
+      "id": 91,
+      "aliases": {
+        "long_name": "Sevastopol Coast",
+        "short_name": "sev"
+      },
+      "equivalencies": [
+        90
+      ],
+      "adjacencies": [
+        4,
+        26,
+        87
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Russia",
+      "unit": null
+    },
+    {
+      "id": 92,
+      "aliases": {
+        "long_name": "Smyrna",
+        "short_name": "smy"
+      },
+      "equivalencies": [
+        93
+      ],
+      "adjacencies": [
+        25,
+        23,
+        41,
+        102
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Turkey",
+      "unit": null
+    },
+    {
+      "id": 93,
+      "aliases": {
+        "long_name": "Smyrna Coast",
+        "short_name": "smy"
+      },
+      "equivalencies": [
+        92
+      ],
+      "adjacencies": [
+        1,
+        5,
+        42,
+        103
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Turkey",
+      "unit": null
+    },
+    {
+      "id": 94,
+      "aliases": {
+        "long_name": "Spain",
+        "short_name": "spa"
+      },
+      "equivalencies": [
+        95,
+        96
+      ],
+      "adjacencies": [
+        49,
+        77,
+        64
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 95,
+      "aliases": {
+        "long_name": "Spain North Coast",
+        "short_name": "spa_nc"
+      },
+      "equivalencies": [
+        94,
+        96
+      ],
+      "adjacencies": [
+        12,
+        50,
+        78
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 96,
+      "aliases": {
+        "long_name": "Spain South Coast",
+        "short_name": "spa_sc"
+      },
+      "equivalencies": [
+        94,
+        95
+      ],
+      "adjacencies": [
+        12,
+        18,
+        8,
+        78,
+        65
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 97,
+      "aliases": {
+        "long_name": "St. Petersburg",
+        "short_name": "stp"
+      },
+      "equivalencies": [
+        98,
+        99
+      ],
+      "adjacencies": [
+        70,
+        47,
+        62,
+        66
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Russia",
+      "unit": null
+    },
+    {
+      "id": 98,
+      "aliases": {
+        "long_name": "St. Petersburg North Coast",
+        "short_name": "stp_nc"
+      },
+      "equivalencies": [
+        97,
+        99
+      ],
+      "adjacencies": [
+        3,
+        71
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Russia",
+      "unit": null
+    },
+    {
+      "id": 99,
+      "aliases": {
+        "long_name": "St. Petersburg South Coast",
+        "short_name": "stp_sc"
+      },
+      "equivalencies": [
+        97,
+        98
+      ],
+      "adjacencies": [
+        7,
+        48,
+        63
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Russia",
+      "unit": null
+    },
+    {
+      "id": 100,
+      "aliases": {
+        "long_name": "Sweden",
+        "short_name": "swe"
+      },
+      "equivalencies": [
+        101
+      ],
+      "adjacencies": [
+        70,
+        47,
+        43
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 101,
+      "aliases": {
+        "long_name": "Sweden Coast",
+        "short_name": "swe"
+      },
+      "equivalencies": [
+        100
+      ],
+      "adjacencies": [
+        16,
+        2,
+        7,
+        71,
+        44,
+        48
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 102,
+      "aliases": {
+        "long_name": "Syria",
+        "short_name": "syr"
+      },
+      "equivalencies": [
+        103
+      ],
+      "adjacencies": [
+        25,
+        92
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 103,
+      "aliases": {
+        "long_name": "Syria Coast",
+        "short_name": "syr"
+      },
+      "equivalencies": [
+        102
+      ],
+      "adjacencies": [
+        5,
+        93
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 104,
+      "aliases": {
+        "long_name": "Trieste",
+        "short_name": "tri"
+      },
+      "equivalencies": [
+        105
+      ],
+      "adjacencies": [
+        19,
+        88,
+        34,
+        114,
+        112,
+        110
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Austria",
+      "unit": null
+    },
+    {
+      "id": 105,
+      "aliases": {
+        "long_name": "Trieste Coast",
+        "short_name": "tri"
+      },
+      "equivalencies": [
+        104
+      ],
+      "adjacencies": [
+        0,
+        113,
+        20
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Austria",
+      "unit": null
+    },
+    {
+      "id": 106,
+      "aliases": {
+        "long_name": "Tunis",
+        "short_name": "tun"
+      },
+      "equivalencies": [
+        107
+      ],
+      "adjacencies": [
+        84
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 107,
+      "aliases": {
+        "long_name": "Tunis Coast",
+        "short_name": "tun"
+      },
+      "equivalencies": [
+        106
+      ],
+      "adjacencies": [
+        18,
+        17,
+        10,
+        85
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 108,
+      "aliases": {
+        "long_name": "Tuscany",
+        "short_name": "tus"
+      },
+      "equivalencies": [
+        109
+      ],
+      "adjacencies": [
+        75,
+        112,
+        81
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 109,
+      "aliases": {
+        "long_name": "Tuscany Coast",
+        "short_name": "tus"
+      },
+      "equivalencies": [
+        108
+      ],
+      "adjacencies": [
+        8,
+        17,
+        76,
+        82
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 110,
+      "aliases": {
+        "long_name": "Tyrolia",
+        "short_name": "trl"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        67,
+        31,
+        114,
+        104,
+        75,
+        112
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 111,
+      "aliases": {
+        "long_name": "Ukraine",
+        "short_name": "ukr"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        66,
+        115,
+        51,
+        90,
+        86
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 112,
+      "aliases": {
+        "long_name": "Venice",
+        "short_name": "ven"
+      },
+      "equivalencies": [
+        113
+      ],
+      "adjacencies": [
+        21,
+        104,
+        75,
+        108,
+        81,
+        110
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Italy",
+      "unit": null
+    },
+    {
+      "id": 113,
+      "aliases": {
+        "long_name": "Venice Coast",
+        "short_name": "ven"
+      },
+      "equivalencies": [
+        112
+      ],
+      "adjacencies": [
+        0,
+        22,
+        105
+      ],
+      "is_supply_center": true,
+      "is_coast": true,
+      "owner": "Italy",
+      "unit": null
+    },
+    {
+      "id": 114,
+      "aliases": {
+        "long_name": "Vienna",
+        "short_name": "vie"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        34,
+        51,
+        31,
+        110,
+        104
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Austria",
+      "unit": null
+    },
+    {
+      "id": 115,
+      "aliases": {
+        "long_name": "Warsaw",
+        "short_name": "war"
+      },
+      "equivalencies": [],
+      "adjacencies": [
+        62,
+        66,
+        79,
+        89,
+        51,
+        111
+      ],
+      "is_supply_center": true,
+      "is_coast": false,
+      "owner": "Russia",
+      "unit": null
+    },
+    {
+      "id": 116,
+      "aliases": {
+        "long_name": "Wales",
+        "short_name": "wal"
+      },
+      "equivalencies": [
+        117
+      ],
+      "adjacencies": [
+        60,
+        58,
+        118
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 117,
+      "aliases": {
+        "long_name": "Wales Coast",
+        "short_name": "wal"
+      },
+      "equivalencies": [
+        116
+      ],
+      "adjacencies": [
+        11,
+        6,
+        61,
+        59
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 118,
+      "aliases": {
+        "long_name": "Yorkshire",
+        "short_name": "yor"
+      },
+      "equivalencies": [
+        119
+      ],
+      "adjacencies": [
+        60,
+        45,
+        116,
+        58
+      ],
+      "is_supply_center": false,
+      "is_coast": false,
+      "owner": null,
+      "unit": null
+    },
+    {
+      "id": 119,
+      "aliases": {
+        "long_name": "Yorkshire Coast",
+        "short_name": "yor"
+      },
+      "equivalencies": [
+        118
+      ],
+      "adjacencies": [
+        14,
+        46,
+        59
+      ],
+      "is_supply_center": false,
+      "is_coast": true,
+      "owner": null,
+      "unit": null
+    }
+  ]
+}
