@@ -497,7 +497,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "Turkey",
-      "unit": null
+      "unit": {
+        "owner": "Turkey",
+        "type": "fleet"
+      }
     },
     {
       "id": 25,
@@ -596,7 +599,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Germany",
-      "unit": null
+      "unit": {
+        "owner": "Germany",
+        "type": "army"
+      }
     },
     {
       "id": 30,
@@ -673,7 +679,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "France",
-      "unit": null
+      "unit": {
+        "owner": "France",
+        "type": "fleet"
+      }
     },
     {
       "id": 34,
@@ -692,7 +701,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Austria",
-      "unit": null
+      "unit": {
+        "owner": "Austria",
+        "type": "army"
+      }
     },
     {
       "id": 35,
@@ -831,7 +843,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Turkey",
-      "unit": null
+      "unit": {
+        "owner": "Turkey",
+        "type": "army"
+      }
     },
     {
       "id": 42,
@@ -932,7 +947,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "England",
-      "unit": null
+      "unit": {
+        "owner": "England",
+        "type": "fleet"
+      }
     },
     {
       "id": 47,
@@ -1151,7 +1169,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "Germany",
-      "unit": null
+      "unit": {
+        "owner": "Germany",
+        "type": "fleet"
+      }
     },
     {
       "id": 58,
@@ -1189,7 +1210,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "England",
-      "unit": null
+      "unit": {
+        "owner": "England",
+        "type": "fleet"
+      }
     },
     {
       "id": 60,
@@ -1209,7 +1233,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "England",
-      "unit": null
+      "unit": {
+        "owner": "England",
+        "type": "army"
+      }
     },
     {
       "id": 61,
@@ -1289,7 +1316,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "France",
-      "unit": null
+      "unit": {
+        "owner": "France",
+        "type": "army"
+      }
     },
     {
       "id": 65,
@@ -1327,7 +1357,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Russia",
-      "unit": null
+      "unit": {
+        "owner": "Russia",
+        "type": "army"
+      }
     },
     {
       "id": 67,
@@ -1348,7 +1381,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Germany",
-      "unit": null
+      "unit": {
+        "owner": "Germany",
+        "type": "army"
+      }
     },
     {
       "id": 68,
@@ -1386,7 +1422,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "Italy",
-      "unit": null
+      "unit": {
+        "owner": "Italy",
+        "type": "fleet"
+      }
     },
     {
       "id": 70,
@@ -1445,7 +1484,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "France",
-      "unit": null
+      "unit": {
+        "owner": "France",
+        "type": "army"
+      }
     },
     {
       "id": 73,
@@ -1618,7 +1660,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Italy",
-      "unit": null
+      "unit": {
+        "owner": "Italy",
+        "type": "army"
+      }
     },
     {
       "id": 82,
@@ -1812,7 +1857,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "Russia",
-      "unit": null
+      "unit": {
+        "owner": "Russia",
+        "type": "fleet"
+      }
     },
     {
       "id": 92,
@@ -1832,7 +1880,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Turkey",
-      "unit": null
+      "unit": {
+        "owner": "Turkey",
+        "type": "army"
+      }
     },
     {
       "id": 93,
@@ -1974,7 +2025,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "Russia",
-      "unit": null
+      "unit": {
+        "owner": "Russia",
+        "type": "fleet"
+      }
     },
     {
       "id": 100,
@@ -2092,7 +2146,10 @@
       "is_supply_center": true,
       "is_coast": true,
       "owner": "Austria",
-      "unit": null
+      "unit": {
+        "owner": "Austria",
+        "type": "fleet"
+      }
     },
     {
       "id": 106,
@@ -2229,7 +2286,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Italy",
-      "unit": null
+      "unit": {
+        "owner": "Italy",
+        "type": "army"
+      }
     },
     {
       "id": 113,
@@ -2267,7 +2327,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Austria",
-      "unit": null
+      "unit": {
+        "owner": "Austria",
+        "type": "army"
+      }
     },
     {
       "id": 115,
@@ -2287,7 +2350,10 @@
       "is_supply_center": true,
       "is_coast": false,
       "owner": "Russia",
-      "unit": null
+      "unit": {
+        "owner": "Russia",
+        "type": "army"
+      }
     },
     {
       "id": 116,

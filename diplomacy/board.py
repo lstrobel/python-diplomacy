@@ -28,16 +28,22 @@ class Board():
             self.tiles[tile['id']] = Tile.from_dict(tile)
 
         self.__verify_tiles()
+        print("Successfully verified map dict with", len(self.tiles), "entries.")
 
     def __verify_tiles(self):
         for tile in self.tiles.values():
             # Assert equivalent tiles have the same owner and supply center status
-            if len(tile.equivalencies) > 0:
+            if len(tile.equivalencies):
                 for equiv_id in tile.equivalencies:
                     assert self.tiles[equiv_id].owner == tile.owner, 'Mismatching owners for equivalent tiles'
                     assert self.tiles[equiv_id].is_supply_center == tile.is_supply_center, \
                         'Mismatching supply center status for equivalent tiles'
+                    if tile.unit is not None:
+                        assert self.tiles[equiv_id] is None, 'Two units on equivalent tiles'
+                        if (tile.is_coast) or ((not tile.is_coast) and (not len(tile.equivalencies))): # Coast or ocean
+                            assert tile.unit.type == 'fleet', 'Non-fleet found on coast or ocean'
+                        else: # Non-coast, non-ocean:
+                            assert tile.unit.type == 'army', 'Non-army found on land'
 
-# TODO: Add units in vanilla_1914.json
 # TODO: Reimport pydip because you accidentally deleted the tests
 # TODO: Add tests
