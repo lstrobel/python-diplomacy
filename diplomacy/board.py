@@ -38,15 +38,19 @@ class Board():
             # Assert equivalent tiles have the same owner and supply center status
             if len(tile.equivalencies):
                 for equiv_id in tile.equivalencies:
-                    assert self.tiles[equiv_id].owner == tile.owner, 'Mismatching owners for equivalent tiles'
+                    assert self.tiles[equiv_id].owner == tile.owner, \
+                        'Mismatching owners for equivalent tiles, ids: {} and {}'.format(tile.id,
+                                                                                         self.tiles[equiv_id].id)
                     assert self.tiles[equiv_id].is_supply_center == tile.is_supply_center, \
-                        'Mismatching supply center status for equivalent tiles'
+                        'Mismatching supply center status for equivalent tiles, ids: {} and {}' \
+                            .format(tile.id, self.tiles[equiv_id].id)
                     if tile.unit is not None:
-                        assert self.tiles[equiv_id] is None, 'Two units on equivalent tiles'
-                        if (tile.is_coast) or ((not tile.is_coast) and (not len(tile.equivalencies))):  # Coast or ocean
-                            assert tile.unit.type == 'fleet', 'Non-fleet found on coast or ocean'
-                        else:  # Non-coast, non-ocean:
-                            assert tile.unit.type == 'army', 'Non-army found on land'
+                        assert self.tiles[equiv_id].unit is None, \
+                            'Two units on equivalent tiles, ids: {} and {}'.format(tile.id, self.tiles[equiv_id].id)
+            if tile.unit is not None:
+                if tile.is_coast:  # Coast or ocean
+                    assert tile.unit.type == 'fleet', \
+                        'Non-fleet found on coast, id: {}'.format(tile.id)
 
     def write_image(self, output_file):
         if self.interpreter == 'vanilla':
