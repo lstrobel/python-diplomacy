@@ -39,8 +39,6 @@ def context(n):
 
 
 def line(draw, c, width=1, fill='#ffffff'):
-    x = c[2] - c[0]
-    y = c[3] - c[1]
     for i in range(1, width + 1):
         dx, dy = 0, i - width / 2
         draw.line((c[0] + dx, c[1] + dy, c[2] + dx, c[3] + dy), width=1, fill=fill)
@@ -70,7 +68,7 @@ def arrow(img, oldcoord, coord, color, noarrow=False, extrawidth=0):
         line(draw, coord + (x2 + coord[0], y2 + coord[1]), width=w, fill=color)
 
 
-def Tarrow(img, oldcoord, coord, color):
+def t_arrow(img, oldcoord, coord, color):
     draw = ImageDraw.Draw(img)
     line(draw, oldcoord + coord, width=std_width, fill=color)
     x = coord[0] - oldcoord[0]
@@ -90,7 +88,7 @@ def Tarrow(img, oldcoord, coord, color):
     line(draw, orig + (x2 + orig[0], y2 + orig[1]), width=std_width, fill=color)
 
 
-def drawX(img, oldcoord, coord, color):
+def draw_x(img, oldcoord, coord, color):
     draw = ImageDraw.Draw(img)
     x = coord[0] - oldcoord[0]
     y = coord[1] - oldcoord[1]
@@ -119,15 +117,12 @@ def write_substitution_image(file, out, table):
     outline = Image.open(IMAGE_OUTLINE).convert('RGBA')
     buf = []
 
-    def withoutalpha(c):
-        return (c[0], c[1], c[2])
-
-    def withalpha(c):
-        return (c[0], c[1], c[2], 255)
+    def without_alpha(c):
+        return c[0], c[1], c[2]
 
     i = 0
     for color in img.getdata():
-        noalpha = withoutalpha(color)
+        noalpha = without_alpha(color)
         i += 1
         if i % 2 ** 17 == 0:
             print('%i pixels filled' % i)
@@ -154,13 +149,13 @@ def write_substitution_image(file, out, table):
         for line in green:
             oldcoord = line[0]
             coord = line[1]
-            Tarrow(img, oldcoord, coord, '#00dd00')
+            t_arrow(img, oldcoord, coord, '#00dd00')
         for line in purple:
             oldcoord = line[0]
             coord = line[1]
             arrow(img, oldcoord, coord, '#ff00ff')
         for x in failed:
-            drawX(img, x[0], x[1], '#aa0000')
+            draw_x(img, x[0], x[1], '#aa0000')
         for dis in ldislodge:
             x = Image.open(IMAGE_DIS).convert('RGBA')
             coord = DIP[dis][0][INDEX_COORD]
@@ -269,12 +264,11 @@ def check_fleet_can_support(loc):
 def lcheck(f):
     def g(*args):
         for loc in args:
-            if type(loc) == type('str'):
+            if isinstance(loc, str):
                 if loc not in DIP:
                     print("'%s' is an invalid location." % loc)
                     if len(loc) > 0:
                         print('Suggestions:')
-                        c = loc[0]
                         for k in DIP:
                             if k[0] == loc[0]:
                                 print(' ' + k)
@@ -313,12 +307,12 @@ def assert_one_unit_per_loc():
 
 
 def midpoint(a, b):
-    return ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+    return (a[0] + b[0]) / 2, (a[1] + b[1]) / 2
 
 
 def unit_coords(t):
     a = DIP[t][0][INDEX_COORD]
-    return (a[0] + 13, a[1] + 8)
+    return a[0] + 13, a[1] + 8
 
 
 def set_color(t, color):
@@ -335,7 +329,6 @@ def get(t):
 
 @lcheck
 def set(t):
-    x = DIP[t][0]
     land[t] = Context.nation[0]
     set_color(t, Context.nation[N_COLOR])
 
@@ -504,10 +497,7 @@ def army_move_failed(t, t2):
 @lcheck
 def fleet_hold(t):
     check_fleet_can_go(t)
-    tmp = []
-    tmp.append(t)
-    tmp.append(Context.nation[0])
-    tmp.append(Context.nation[1])
+    tmp = [t, Context.nation[0], Context.nation[1]]
     # fleets.append((t, Context.nation))
     fleets.append(tmp)
     occupy(t)
