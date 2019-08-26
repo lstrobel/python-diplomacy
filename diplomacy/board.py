@@ -72,7 +72,7 @@ class Board:
                 if tile.owner is not None:
                     context(self.__get_vis_country_class(tile.owner))
                     shortname = tile.aliases['short_name']
-                    if len(shortname) <= 3:  # Prevent the north-coasts and south-coasts from erring
+                    if len(shortname) <= 3 and (not tile.is_ocean):  # Prevent setting tiles that can't change color
                         set_(shortname)
                 if tile.unit is not None:
                     context(self.__get_vis_country_class(tile.unit.owner))
@@ -101,6 +101,33 @@ class Board:
             return TURKEY
         else:
             raise AttributeError('Unknown country')
+
+    def scramble_board(self):
+        """Completely shuffle the owners and units on each tile.
+            Maintains the number and type of units on the board.
+            Does not maintain the number of supply centers. (yet)
+            The board must have nonzero players"""
+        if len(self.players):
+            armies = []
+            fleets = []
+            for tile in self.tiles.values():
+                tile.owner = random.choice(tuple(self.players))
+                if tile.unit is not None:
+                    if tile.unit.type == 'army':
+                        armies.append(tile.unit)
+                    else:
+                        fleets.append(tile.unit)
+                    tile.unit = None
+            tiles = list(self.tiles.values())
+            while len(armies) or len(fleets):
+                tile = random.choice(tiles)
+                if tile.unit is None:
+                    if (tile.is_ocean or tile.is_coast) and len(fleets):
+                        tile.unit = fleets.pop()
+                    elif not (tile.is_ocean or tile.is_coast) and len(armies):
+                        tile.unit = armies.pop()
+        else:
+            raise NotImplementedError("Can't shuffle a board with no players")
 
 # TODO: Reimport pydip because you accidentally deleted the tests
 # TODO: Add tests
