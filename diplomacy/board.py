@@ -17,7 +17,7 @@
 from diplomacy.tile import Tile
 
 
-class Board():
+class Board:
 
     def __init__(self, map_dict: dict, interpreter='vanilla'):
 
@@ -28,7 +28,7 @@ class Board():
 
         # Fill in initial tiles
         for tile in map_dict['tiles']:
-            self.tiles[tile['id']] = Tile.from_dict(tile)
+            self.tiles[tile['id']] = Tile.create_from_dict(tile)
 
         self.__verify_tiles()
         print("Successfully verified map dict with", len(self.tiles), "entries.")
@@ -42,8 +42,8 @@ class Board():
                         'Mismatching owners for equivalent tiles, ids: {} and {}'.format(tile.id,
                                                                                          self.tiles[equiv_id].id)
                     assert self.tiles[equiv_id].is_supply_center == tile.is_supply_center, \
-                        'Mismatching supply center status for equivalent tiles, ids: {} and {}' \
-                            .format(tile.id, self.tiles[equiv_id].id)
+                        'Mismatching SC status for equivalent tiles, ids: {} and {}'.format(tile.id,
+                                                                                            self.tiles[equiv_id].id)
                     if tile.unit is not None:
                         assert self.tiles[equiv_id].unit is None, \
                             'Two units on equivalent tiles, ids: {} and {}'.format(tile.id, self.tiles[equiv_id].id)

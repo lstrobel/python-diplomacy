@@ -14,17 +14,18 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-class Unit(object):
+
+class Unit:
     """A unit that is placed in a diplomacy map"""
 
-    def __init__(self, owner: str, type: str):
+    def __init__(self, owner: str, type_: str):
         self.owner = owner
-        self.type = type
+        self.type = type_
 
     def serialize(self):
         """Serialize this Unit as a dict for JSON"""
         return self.__dict__
 
     @classmethod
-    def from_dict(cls, dict_):
+    def create_from_dict(cls, dict_):
         return cls(dict_['owner'], dict_['type'])

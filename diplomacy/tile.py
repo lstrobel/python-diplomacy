@@ -17,12 +17,12 @@
 from diplomacy.unit import Unit
 
 
-class Tile(object):
+class Tile:
     """A board tile, with information about its owner and the unit on it"""
 
-    def __init__(self, id: int, aliases: dict, equivalencies: list, adjacencies: list, is_supply_center=False,
+    def __init__(self, id_: int, aliases: dict, equivalencies: list, adjacencies: list, is_supply_center=False,
                  is_coast=False, owner=None, unit=None):
-        self.id = id
+        self.id = id_
         self.aliases = aliases
         self.equivalencies = equivalencies
         self.adjacencies = adjacencies
@@ -50,7 +50,7 @@ class Tile(object):
                 'unit': unit}
 
     @classmethod
-    def from_dict(cls, dict_):
-        unit = Unit.from_dict(dict_['unit']) if dict_['unit'] is not None else None
+    def create_from_dict(cls, dict_):
+        unit = Unit.create_from_dict(dict_['unit']) if dict_['unit'] is not None else None
         return cls(dict_['id'], dict_['aliases'], dict_['equivalencies'], dict_['adjacencies'],
                    dict_['is_supply_center'], dict_['is_coast'], dict_['owner'], unit)
