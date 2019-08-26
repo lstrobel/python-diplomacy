@@ -19,9 +19,12 @@ from diplomacy.tile import Tile
 
 class Board():
 
-    def __init__(self, map_dict: dict):
+    def __init__(self, map_dict: dict, interpreter='vanilla'):
 
         self.tiles = {}
+        self.interpreter = interpreter
+        if interpreter != 'vanilla':
+            raise ModuleNotFoundError('No module found named {}'.format(interpreter))
 
         # Fill in initial tiles
         for tile in map_dict['tiles']:
@@ -40,10 +43,17 @@ class Board():
                         'Mismatching supply center status for equivalent tiles'
                     if tile.unit is not None:
                         assert self.tiles[equiv_id] is None, 'Two units on equivalent tiles'
-                        if (tile.is_coast) or ((not tile.is_coast) and (not len(tile.equivalencies))): # Coast or ocean
+                        if (tile.is_coast) or ((not tile.is_coast) and (not len(tile.equivalencies))):  # Coast or ocean
                             assert tile.unit.type == 'fleet', 'Non-fleet found on coast or ocean'
-                        else: # Non-coast, non-ocean:
+                        else:  # Non-coast, non-ocean:
                             assert tile.unit.type == 'army', 'Non-army found on land'
+
+    def write_image(self, output_file):
+        if self.interpreter == 'vanilla':
+            pass
 
 # TODO: Reimport pydip because you accidentally deleted the tests
 # TODO: Add tests
+# TODO: Add interpreter differentiation
+# TODO: Add game information to the json/dict
+# TODO: Add game printing
