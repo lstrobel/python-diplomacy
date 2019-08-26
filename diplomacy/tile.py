@@ -21,7 +21,7 @@ class Tile:
     """A board tile, with information about its owner and the unit on it"""
 
     def __init__(self, id_: int, aliases: dict, equivalencies: list, adjacencies: list, is_supply_center=False,
-                 is_coast=False, owner=None, unit=None):
+                 is_coast=False, owner: str = None, unit: Unit = None):
         self.id = id_
         self.aliases = aliases
         self.equivalencies = equivalencies

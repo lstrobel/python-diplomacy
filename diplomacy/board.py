@@ -15,6 +15,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from diplomacy.tile import Tile
+from diplomacy.visualization.map import *
 
 
 class Board:
@@ -48,16 +49,45 @@ class Board:
                         assert self.tiles[equiv_id].unit is None, \
                             'Two units on equivalent tiles, ids: {} and {}'.format(tile.id, self.tiles[equiv_id].id)
             if tile.unit is not None:
+                assert tile.unit.owner is not None, 'Unit with no owner in tile: {}'.format(tile.id)
                 if tile.is_coast:  # Coast or ocean
                     assert tile.unit.type == 'fleet', \
                         'Non-fleet found on coast, id: {}'.format(tile.id)
 
     def write_image(self, output_file):
         if self.interpreter == 'vanilla':
-            pass
+            for tile in self.tiles.values():
+                if tile.owner is not None:
+                    context(self.__get_vis_country_class(tile.owner))
+                    shortname = tile.aliases['short_name']
+                    if len(shortname) <= 3: # Prevent the north-coasts and south-coasts from erring
+                        set(shortname)
+                if tile.unit is not None:
+                    context(self.__get_vis_country_class(tile.unit.owner))
+                    if tile.unit.type == 'army':
+                        army_hold(tile.aliases['short_name'])
+                    elif tile.unit.type == 'fleet':
+                        fleet_hold(tile.aliases['short_name'])
+            done()
+
+    def __get_vis_country_class(self, name):
+        if name == 'England':
+            return ENGLAND
+        elif name == 'Italy':
+            return ITALY
+        elif name == 'France':
+            return FRANCE
+        elif name == 'Germany':
+            return GERMANY
+        elif name == 'Russia':
+            return RUSSIA
+        elif name == 'Austria':
+            return AUSTRIA
+        elif name == 'Turkey':
+            return TURKEY
+        else:
+            raise AttributeError('Unknown country')
 
 # TODO: Reimport pydip because you accidentally deleted the tests
 # TODO: Add tests
-# TODO: Add interpreter differentiation
 # TODO: Add game information to the json/dict
-# TODO: Add game printing
