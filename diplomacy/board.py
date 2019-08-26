@@ -22,17 +22,22 @@ class Board:
 
     def __init__(self, map_dict: dict, interpreter='vanilla'):
 
-        self.tiles = {}
-        self.interpreter = interpreter
         if interpreter != 'vanilla':
             raise ModuleNotFoundError('No module found named {}'.format(interpreter))
+
+        self.tiles = {}
+        self.interpreter = interpreter
+        self.players = set()
 
         # Fill in initial tiles
         for tile in map_dict['tiles']:
             self.tiles[tile['id']] = Tile.create_from_dict(tile)
+            if tile['owner'] is not None:
+                self.players.add(tile['owner'])
 
         self.__verify_tiles()
-        print("Successfully verified map dict with", len(self.tiles), "entries.")
+        print(
+            "Successfully verified map dict with {} entries and {} players.".format(len(self.tiles), len(self.players)))
 
     def __verify_tiles(self):
         for tile in self.tiles.values():
@@ -50,6 +55,7 @@ class Board:
                             'Two units on equivalent tiles, ids: {} and {}'.format(tile.id, self.tiles[equiv_id].id)
             if tile.unit is not None:
                 assert tile.unit.owner is not None, 'Unit with no owner in tile: {}'.format(tile.id)
+                assert tile.unit.owner in self.players, 'Unit found with unregistered player in tile {}'.format(tile.id)
                 if tile.is_coast:  # Coast or ocean
                     assert tile.unit.type == 'fleet', \
                         'Non-fleet found on coast, id: {}'.format(tile.id)
@@ -60,8 +66,8 @@ class Board:
                 if tile.owner is not None:
                     context(self.__get_vis_country_class(tile.owner))
                     shortname = tile.aliases['short_name']
-                    if len(shortname) <= 3: # Prevent the north-coasts and south-coasts from erring
-                        set(shortname)
+                    if len(shortname) <= 3:  # Prevent the north-coasts and south-coasts from erring
+                        set_(shortname)
                 if tile.unit is not None:
                     context(self.__get_vis_country_class(tile.unit.owner))
                     if tile.unit.type == 'army':

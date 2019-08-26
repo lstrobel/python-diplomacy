@@ -274,7 +274,6 @@ def lcheck(f):
                                 print(' ' + k)
                     raise SystemExit
         return f(*args)
-
     return g
 
 
@@ -328,7 +327,7 @@ def get(t):
 
 
 @lcheck
-def set(t):
+def set_(t):
     land[t] = Context.nation[0]
     set_color(t, Context.nation[N_COLOR])
 
@@ -507,25 +506,25 @@ for t in UNALIGNED:
     set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_ENGLAND:
     context(ENGLAND)
-    set(t)
+    set_(t)
 for t in DEFAULT_GERMANY:
     context(GERMANY)
-    set(t)
+    set_(t)
 for t in DEFAULT_FRANCE:
     context(FRANCE)
-    set(t)
+    set_(t)
 for t in DEFAULT_ITALY:
     context(ITALY)
-    set(t)
+    set_(t)
 for t in DEFAULT_AUSTRIA:
     context(AUSTRIA)
-    set(t)
+    set_(t)
 for t in DEFAULT_TURKEY:
     context(TURKEY)
-    set(t)
+    set_(t)
 for t in DEFAULT_RUSSIA:
     context(RUSSIA)
-    set(t)
+    set_(t)
 
 
 def done():
