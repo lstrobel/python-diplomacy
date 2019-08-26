@@ -21,12 +21,13 @@ class Tile:
     """A board tile, with information about its owner and the unit on it"""
 
     def __init__(self, id_: int, aliases: dict, equivalencies: list, adjacencies: list, is_supply_center=False,
-                 is_coast=False, owner: str = None, unit: Unit = None):
+                 is_ocean=False, is_coast=False, owner: str = None, unit: Unit = None):
         self.id = id_
         self.aliases = aliases
         self.equivalencies = equivalencies
         self.adjacencies = adjacencies
         self.is_supply_center = is_supply_center
+        self.is_ocean = is_ocean
         self.is_coast = is_coast
         self.owner = owner
         self.unit = unit
@@ -45,6 +46,7 @@ class Tile:
                 'equivalencies': equivalencies,
                 'adjacencies': adjacencies,
                 'is_supply_center': self.is_supply_center,
+                'is_ocean': self.is_ocean,
                 'is_coast': self.is_coast,
                 'owner': self.owner,
                 'unit': unit}
@@ -53,4 +55,4 @@ class Tile:
     def create_from_dict(cls, dict_):
         unit = Unit.create_from_dict(dict_['unit']) if dict_['unit'] is not None else None
         return cls(dict_['id'], dict_['aliases'], dict_['equivalencies'], dict_['adjacencies'],
-                   dict_['is_supply_center'], dict_['is_coast'], dict_['owner'], unit)
+                   dict_['is_supply_center'], dict_['is_ocean'], dict_['is_coast'], dict_['owner'], unit)

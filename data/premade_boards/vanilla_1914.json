@@ -15,6 +15,7 @@
         20
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -35,6 +36,7 @@
         5
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -56,6 +58,7 @@
         44
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -73,6 +76,7 @@
         98
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -93,6 +97,7 @@
         24
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -111,6 +116,7 @@
         103
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -133,6 +139,7 @@
         33
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -152,6 +159,7 @@
         101
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -172,6 +180,7 @@
         17
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -190,6 +199,7 @@
         55
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -213,6 +223,7 @@
         5
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -232,6 +243,7 @@
         117
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -256,6 +268,7 @@
         33
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -275,6 +288,7 @@
         61
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -300,6 +314,7 @@
         44
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -320,6 +335,7 @@
         71
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -338,6 +354,7 @@
         44
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -359,6 +376,7 @@
         107
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -379,6 +397,7 @@
         85
       ],
       "is_supply_center": false,
+      "is_ocean": true,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -398,6 +417,7 @@
         88
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -418,6 +438,7 @@
         53
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -437,6 +458,7 @@
         68
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -457,6 +479,7 @@
         113
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -476,6 +499,7 @@
         41
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Turkey",
       "unit": null
@@ -495,6 +519,7 @@
         26
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Turkey",
       "unit": {
@@ -518,6 +543,7 @@
         23
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -537,6 +563,7 @@
         91
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -557,6 +584,7 @@
         73
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -577,6 +605,7 @@
         74
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -597,6 +626,7 @@
         67
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Germany",
       "unit": {
@@ -619,6 +649,7 @@
         57
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Germany",
       "unit": null
@@ -638,6 +669,7 @@
         114
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -657,6 +689,7 @@
         72
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "France",
       "unit": null
@@ -677,6 +710,7 @@
         50
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "France",
       "unit": {
@@ -699,6 +733,7 @@
         51
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Austria",
       "unit": {
@@ -723,6 +758,7 @@
         88
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -743,6 +779,7 @@
         87
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -763,6 +800,7 @@
         42
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -784,6 +822,7 @@
         73
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -802,6 +841,7 @@
         60
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -822,6 +862,7 @@
         61
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -841,6 +882,7 @@
         35
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Turkey",
       "unit": {
@@ -866,6 +908,7 @@
         93
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Turkey",
       "unit": null
@@ -884,6 +927,7 @@
         56
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -906,6 +950,7 @@
         57
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -925,6 +970,7 @@
         118
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "England",
       "unit": null
@@ -945,6 +991,7 @@
         119
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "England",
       "unit": {
@@ -967,6 +1014,7 @@
         97
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -986,6 +1034,7 @@
         99
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1007,6 +1056,7 @@
         94
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1026,6 +1076,7 @@
         95
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1047,6 +1098,7 @@
         89
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1066,6 +1118,7 @@
         88
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1086,6 +1139,7 @@
         37
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1105,6 +1159,7 @@
         27
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1125,6 +1180,7 @@
         28
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1146,6 +1202,7 @@
         54
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Germany",
       "unit": null
@@ -1167,6 +1224,7 @@
         55
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Germany",
       "unit": {
@@ -1188,6 +1246,7 @@
         118
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "England",
       "unit": null
@@ -1208,6 +1267,7 @@
         119
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "England",
       "unit": {
@@ -1231,6 +1291,7 @@
         116
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "England",
       "unit": {
@@ -1254,6 +1315,7 @@
         117
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "England",
       "unit": null
@@ -1274,6 +1336,7 @@
         79
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1294,6 +1357,7 @@
         80
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1314,6 +1378,7 @@
         75
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "France",
       "unit": {
@@ -1336,6 +1401,7 @@
         76
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "France",
       "unit": null
@@ -1355,6 +1421,7 @@
         90
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Russia",
       "unit": {
@@ -1379,6 +1446,7 @@
         31
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Germany",
       "unit": {
@@ -1400,6 +1468,7 @@
         21
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Italy",
       "unit": null
@@ -1420,6 +1489,7 @@
         22
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Italy",
       "unit": {
@@ -1442,6 +1512,7 @@
         97
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1464,6 +1535,7 @@
         98
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1482,6 +1554,7 @@
         49
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "France",
       "unit": {
@@ -1505,6 +1578,7 @@
         32
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1524,6 +1598,7 @@
         33
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1544,6 +1619,7 @@
         110
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1563,6 +1639,7 @@
         109
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1580,6 +1657,7 @@
         94
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1599,6 +1677,7 @@
         96
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1619,6 +1698,7 @@
         29
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1638,6 +1718,7 @@
         30
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1658,6 +1739,7 @@
         68
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Italy",
       "unit": {
@@ -1680,6 +1762,7 @@
         69
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Italy",
       "unit": null
@@ -1699,6 +1782,7 @@
         38
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1716,6 +1800,7 @@
         106
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1735,6 +1820,7 @@
         107
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1757,6 +1843,7 @@
         88
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1776,6 +1863,7 @@
         36
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1796,6 +1884,7 @@
         34
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1816,6 +1905,7 @@
         79
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1836,6 +1926,7 @@
         86
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Russia",
       "unit": null
@@ -1855,6 +1946,7 @@
         87
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Russia",
       "unit": {
@@ -1878,6 +1970,7 @@
         102
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Turkey",
       "unit": {
@@ -1901,6 +1994,7 @@
         103
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Turkey",
       "unit": null
@@ -1921,6 +2015,7 @@
         64
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -1941,6 +2036,7 @@
         78
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1963,6 +2059,7 @@
         65
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -1984,6 +2081,7 @@
         66
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Russia",
       "unit": null
@@ -2003,6 +2101,7 @@
         71
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Russia",
       "unit": null
@@ -2023,6 +2122,7 @@
         63
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Russia",
       "unit": {
@@ -2045,6 +2145,7 @@
         43
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2067,6 +2168,7 @@
         48
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -2085,6 +2187,7 @@
         92
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2103,6 +2206,7 @@
         93
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -2125,6 +2229,7 @@
         110
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Austria",
       "unit": null
@@ -2144,6 +2249,7 @@
         20
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Austria",
       "unit": {
@@ -2164,6 +2270,7 @@
         84
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2184,6 +2291,7 @@
         85
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -2203,6 +2311,7 @@
         81
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2223,6 +2332,7 @@
         82
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -2243,6 +2353,7 @@
         112
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2262,6 +2373,7 @@
         86
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2284,6 +2396,7 @@
         110
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Italy",
       "unit": {
@@ -2306,6 +2419,7 @@
         105
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": true,
       "owner": "Italy",
       "unit": null
@@ -2325,6 +2439,7 @@
         104
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Austria",
       "unit": {
@@ -2348,6 +2463,7 @@
         111
       ],
       "is_supply_center": true,
+      "is_ocean": false,
       "is_coast": false,
       "owner": "Russia",
       "unit": {
@@ -2370,6 +2486,7 @@
         118
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2390,6 +2507,7 @@
         59
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null
@@ -2410,6 +2528,7 @@
         58
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": false,
       "owner": null,
       "unit": null
@@ -2429,6 +2548,7 @@
         59
       ],
       "is_supply_center": false,
+      "is_ocean": false,
       "is_coast": true,
       "owner": null,
       "unit": null

@@ -13,6 +13,7 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+import random
 
 from diplomacy.tile import Tile
 from diplomacy.visualization.map import *
@@ -40,6 +41,7 @@ class Board:
             "Successfully verified map dict with {} entries and {} players.".format(len(self.tiles), len(self.players)))
 
     def __verify_tiles(self):
+        """Assert that the tiles are in a valid game state - DOESNT HAVE FULL COVERAGE!"""
         for tile in self.tiles.values():
             # Assert equivalent tiles have the same owner and supply center status
             if len(tile.equivalencies):
@@ -56,11 +58,15 @@ class Board:
             if tile.unit is not None:
                 assert tile.unit.owner is not None, 'Unit with no owner in tile: {}'.format(tile.id)
                 assert tile.unit.owner in self.players, 'Unit found with unregistered player in tile {}'.format(tile.id)
-                if tile.is_coast:  # Coast or ocean
+                if tile.is_coast or tile.is_ocean:
                     assert tile.unit.type == 'fleet', \
-                        'Non-fleet found on coast, id: {}'.format(tile.id)
+                        'Non-fleet found on coast or ocean, id: {}'.format(tile.id)
+                else:
+                    assert tile.unit.type == 'army', \
+                        'Non-army found on land, id: {}'.format(tile.id)
 
-    def write_image(self, output_file):
+    def write_image(self, output_dir):  # TODO: Finish this so that you can decide the output file
+        """Write the board as an image to the specified location"""
         if self.interpreter == 'vanilla':
             for tile in self.tiles.values():
                 if tile.owner is not None:
@@ -76,7 +82,9 @@ class Board:
                         fleet_hold(tile.aliases['short_name'])
             done()
 
-    def __get_vis_country_class(self, name):
+    @staticmethod
+    def __get_vis_country_class(name):
+        """Return the map-object corresponding to the vanilla country passed"""
         if name == 'England':
             return ENGLAND
         elif name == 'Italy':
