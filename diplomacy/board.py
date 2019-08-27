@@ -121,7 +121,7 @@ class Board:
                 for _ in range(count):
                     tile = random.choice(tiles)
                     if tile.unit_include_equivs is None:
-                        if (tile.is_ocean or tile.is_coast):
+                        if tile.is_ocean or tile.is_coast:
                             tile.unit = Unit(country, 'fleet')
                         elif not (tile.is_ocean or tile.is_coast):
                             tile.unit = Unit(country, 'army')

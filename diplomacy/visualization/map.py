@@ -264,16 +264,16 @@ def check_fleet_can_support(loc):
 def lcheck(f):
     def g(*args):
         for loc in args:
-            if isinstance(loc, str):
-                if loc not in DIP:
-                    print("'%s' is an invalid location." % loc)
-                    if len(loc) > 0:
-                        print('Suggestions:')
-                        for k in DIP:
-                            if k[0] == loc[0]:
-                                print(' ' + k)
-                    raise SystemExit
+            if isinstance(loc, str) and loc not in DIP:
+                print("'%s' is an invalid location." % loc)
+                if len(loc) > 0:
+                    print('Suggestions:')
+                    for k in DIP:
+                        if k[0] == loc[0]:
+                            print(' ' + k)
+                raise SystemExit
         return f(*args)
+
     return g
 
 
@@ -505,26 +505,19 @@ def fleet_hold(t):
 for t in UNALIGNED:
     set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_ENGLAND:
-    context(ENGLAND)
-    set_(t)
+    set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_GERMANY:
-    context(GERMANY)
-    set_(t)
+    set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_FRANCE:
-    context(FRANCE)
-    set_(t)
+    set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_ITALY:
-    context(ITALY)
-    set_(t)
+    set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_AUSTRIA:
-    context(AUSTRIA)
-    set_(t)
+    set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_TURKEY:
-    context(TURKEY)
-    set_(t)
+    set_color(t, COLOR_NEUTRAL)
 for t in DEFAULT_RUSSIA:
-    context(RUSSIA)
-    set_(t)
+    set_color(t, COLOR_NEUTRAL)
 
 
 def done():
