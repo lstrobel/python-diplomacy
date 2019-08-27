@@ -140,7 +140,7 @@ DIP = {
     'wes': ((COLOR_OCEAN, SEA, (302, 843)), ('spa_sc', 'lyo', 'tyr', 'ion', 'tun', 'naf')),
     'mao': ((COLOR_OCEAN, SEA, (78, 577)), ('nao', 'iri', 'eng', 'bre', 'gas', 'spa_nc', 'por', 'wes', 'naf')),
     'nth': (
-    (COLOR_OCEAN, SEA, (403, 383)), ('nwg', 'nor', 'ska', 'den', 'hel', 'hol', 'bel', 'eng', 'lon', 'yor', 'edi')),
+        (COLOR_OCEAN, SEA, (403, 383)), ('nwg', 'nor', 'ska', 'den', 'hel', 'hol', 'bel', 'eng', 'lon', 'yor', 'edi')),
     'nwg': ((COLOR_OCEAN, SEA, (427, 105)), ('bar', 'nor', 'nth', 'edi', 'cly')),
     'ska': ((COLOR_OCEAN, SEA, (501, 361)), ('nor', 'swe', 'den', 'nth')),
     'hel': ((COLOR_OCEAN, SEA, (447, 442)), ('nth', 'den', 'kie', 'hol')),
