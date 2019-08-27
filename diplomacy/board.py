@@ -16,6 +16,7 @@
 import random
 
 from diplomacy.tile import Tile
+from diplomacy.unit import Unit
 from diplomacy.visualization.map import *
 
 
@@ -35,10 +36,17 @@ class Board:
 
         # Fill in initial tiles
         self.tiles = {}
+        # First loop: get all of the tiles in memory
         for tile in map_dict['tiles']:
             self.tiles[tile['id']] = Tile.create_from_dict(tile)
+        # Second loop: add equivalencies and adjacencies
+        for tile in map_dict['tiles']:
+            for equiv_id in tile['equivalencies']:
+                self.tiles[tile['id']].equivalencies.append(self.tiles[equiv_id])
+            for adjacent_id in tile['adjacencies']:
+                self.tiles[tile['id']].adjacencies.append(self.tiles[adjacent_id])
 
-        self.__verify_tiles()
+        self._validate_tiles()
         print(
             "Successfully verified map dict with {} entries and {} players.".format(len(self.tiles), len(self.players)))
 
@@ -70,59 +78,57 @@ class Board:
         """Return the number of land (non-ocean) tiles on the board"""
         return len(self.tiles) - self.num_ocean_tiles
 
-    def __verify_tiles(self):
+    def _validate_tiles(self):
         """Assert that the tiles are in a valid game state - DOESNT HAVE FULL COVERAGE!"""
         for tile in self.tiles.values():
             # Assert equivalent tiles have the same owner and supply center status
             if len(tile.equivalencies):
-                for equiv_id in tile.equivalencies:
-                    assert self.tiles[equiv_id].owner == tile.owner, \
-                        'Mismatching owners for equivalent tiles, ids: {} and {}'.format(tile.id,
-                                                                                         self.tiles[equiv_id].id)
-                    assert self.tiles[equiv_id].is_supply_center == tile.is_supply_center, \
-                        'Mismatching SC status for equivalent tiles, ids: {} and {}'.format(tile.id,
-                                                                                            self.tiles[equiv_id].id)
+                for equiv_tile in tile.equivalencies:
+                    assert equiv_tile.owner == tile.owner, \
+                        'Mismatching owners for equivalent tiles: ids {} and {}'.format(tile.id, equiv_tile.id)
+                    assert equiv_tile.is_supply_center == tile.is_supply_center, \
+                        'Mismatching SC status for equivalent tiles: ids {} and {}'.format(tile.id, equiv_tile.id)
                     if tile.unit is not None:
-                        assert self.tiles[equiv_id].unit is None, \
-                            'Two units on equivalent tiles, ids: {} and {}'.format(tile.id, self.tiles[equiv_id].id)
+                        assert equiv_tile.unit is None, \
+                            'Two units on equivalent tiles: ids {} and {}'.format(tile.id, equiv_tile.id)
             # Assert the units on this tile are valid
             if tile.unit is not None:
-                assert tile.unit.owner is not None, 'Unit with no owner in tile: {}'.format(tile.id)
-                assert tile.unit.owner in self.players, 'Unit found with unregistered player in tile {}'.format(tile.id)
+                assert tile.unit.owner is not None, 'Unit with no owner in tile: id {}'.format(tile.id)
+                assert tile.unit.owner in self.players, 'Unit found with unregistered player in tile: id {}'.format(
+                    tile.id)
                 if tile.is_coast or tile.is_ocean:
                     assert tile.unit.type == 'fleet', \
-                        'Non-fleet found on coast or ocean, id: {}'.format(tile.id)
+                        'Non-fleet found on coast or ocean: id {}'.format(tile.id)
                 else:
                     assert tile.unit.type == 'army', \
-                        'Non-army found on land, id: {}'.format(tile.id)
+                        'Non-army found on land: id {}'.format(tile.id)
             # Assert that the owner of this tile is valid
             if tile.owner is not None:
-                assert tile.owner in self.players, 'Tile without valid owner found: {}'.format(tile.id)
+                assert tile.owner in self.players, 'Tile without valid owner found: id {}'.format(tile.id)
+            # Assert each tile has at least one adjacency
+            assert len(tile.adjacencies), 'Tile without adjacencies: id {}'.format(tile.id)
 
     def scramble(self):
         """Completely shuffle the owners and units on each tile.
-            Maintains the number and type of units on the board.
-            Does not maintain the number of supply centers. (yet)
+            Then adds a adequate number of units to the board.
             The board must have nonzero players"""
         if len(self.players):
-            army_list = []
-            fleet_list = []
             for tile in self.tiles.values():
-                tile.owner = random.choice(tuple(self.players))
-                if tile.unit is not None:
-                    if tile.unit.type == 'army':
-                        army_list.append(tile.unit)
-                    else:
-                        fleet_list.append(tile.unit)
-                    tile.unit = None
+                random_player = random.choice(tuple(self.players))
+                tile.owner = random_player
+                for equiv_tile_id in tile.equivalencies:
+                    self.tiles[equiv_tile_id].owner = random_player
+                tile.unit = None
             tiles = list(self.tiles.values())
-            while len(army_list) or len(fleet_list):
-                tile = random.choice(tiles)
-                if tile.unit is None:
-                    if (tile.is_ocean or tile.is_coast) and len(fleet_list):
-                        tile.unit = fleet_list.pop()
-                    elif not (tile.is_ocean or tile.is_coast) and len(army_list):
-                        tile.unit = army_list.pop()
+            for country, count in self.sc_counts.items():
+                for i in range(count):
+                    tile = random.choice(tiles)
+                    if tile.unit is None:
+                        if (tile.is_ocean or tile.is_coast):
+                            tile.unit = Unit(country, 'fleet')
+                        elif not (tile.is_ocean or tile.is_coast):
+                            tile.unit = Unit(country, 'army')
+            self._validate_tiles()
         else:
             raise NotImplementedError("Can't shuffle a board with no players")
 
