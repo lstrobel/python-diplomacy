@@ -51,8 +51,19 @@ class Tile:
     @owner.setter
     def owner(self, new_owner):
         for tile in self.equivalencies:
-            tile._owner = None
+            tile._owner = new_owner
         self._owner = new_owner
+
+    @property
+    def unit_include_equivs(self):
+        """Returns the first unit found that exists on this Tile or any equivalent Tiles, otherwise None"""
+        if self.unit is not None:
+            return self.unit
+        else:
+            for equiv_tile in self.equivalencies:
+                if equiv_tile.unit is not None:
+                    return equiv_tile.unit
+        return None
 
     def serialize(self):
         """Serialize this Tile as a dict for JSON"""

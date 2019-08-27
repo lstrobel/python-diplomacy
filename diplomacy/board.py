@@ -110,20 +110,17 @@ class Board:
 
     def scramble(self):
         """Completely shuffle the owners and units on each tile.
-            Then adds a adequate number of units to the board.
+            Then adds a adequate number of units to the board (placing them anywhere).
             The board must have nonzero players"""
         if len(self.players):
             for tile in self.tiles.values():
-                random_player = random.choice(tuple(self.players))
-                tile.owner = random_player
-                for equiv_tile_id in tile.equivalencies:
-                    self.tiles[equiv_tile_id].owner = random_player
+                tile.owner = random.choice(tuple(self.players))
                 tile.unit = None
             tiles = list(self.tiles.values())
             for country, count in self.sc_counts.items():
-                for i in range(count):
+                for _ in range(count):
                     tile = random.choice(tiles)
-                    if tile.unit is None:
+                    if tile.unit_include_equivs is None:
                         if (tile.is_ocean or tile.is_coast):
                             tile.unit = Unit(country, 'fleet')
                         elif not (tile.is_ocean or tile.is_coast):
