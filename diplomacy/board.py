@@ -108,24 +108,24 @@ class Board:
             Does not maintain the number of supply centers. (yet)
             The board must have nonzero players"""
         if len(self.players):
-            armies = []
-            fleets = []
+            army_list = []
+            fleet_list = []
             for tile in self.tiles.values():
                 tile.owner = random.choice(tuple(self.players))
                 if tile.unit is not None:
                     if tile.unit.type == 'army':
-                        armies.append(tile.unit)
+                        army_list.append(tile.unit)
                     else:
-                        fleets.append(tile.unit)
+                        fleet_list.append(tile.unit)
                     tile.unit = None
             tiles = list(self.tiles.values())
-            while len(armies) or len(fleets):
+            while len(army_list) or len(fleet_list):
                 tile = random.choice(tiles)
                 if tile.unit is None:
-                    if (tile.is_ocean or tile.is_coast) and len(fleets):
-                        tile.unit = fleets.pop()
-                    elif not (tile.is_ocean or tile.is_coast) and len(armies):
-                        tile.unit = armies.pop()
+                    if (tile.is_ocean or tile.is_coast) and len(fleet_list):
+                        tile.unit = fleet_list.pop()
+                    elif not (tile.is_ocean or tile.is_coast) and len(army_list):
+                        tile.unit = army_list.pop()
         else:
             raise NotImplementedError("Can't shuffle a board with no players")
 
