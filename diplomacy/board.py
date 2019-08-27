@@ -41,6 +41,16 @@ class Board:
         print(
             "Successfully verified map dict with {} entries and {} players.".format(len(self.tiles), len(self.players)))
 
+    @property
+    def sc_counts(self):
+        sc_dict = {}
+        for player in self.players:
+            sc_dict[player] = 0
+        for tile in self.tiles.values():
+            if tile.owner is not None and not tile.is_coast:
+                sc_dict[tile.owner] += 1
+        return sc_dict
+
     def __verify_tiles(self):
         """Assert that the tiles are in a valid game state - DOESNT HAVE FULL COVERAGE!"""
         for tile in self.tiles.values():
