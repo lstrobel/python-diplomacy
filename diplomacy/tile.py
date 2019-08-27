@@ -41,15 +41,15 @@ class Tile:
         for adjacency in self.adjacencies:
             adjacencies.append(adjacency.id)
         unit = self.unit.serialize() if self.unit is not None else None
-        return {'id': self.id,
-                'aliases': self.aliases,
-                'equivalencies': equivalencies,
-                'adjacencies': adjacencies,
+        return {'id'              : self.id,
+                'aliases'         : self.aliases,
+                'equivalencies'   : equivalencies,
+                'adjacencies'     : adjacencies,
                 'is_supply_center': self.is_supply_center,
-                'is_ocean': self.is_ocean,
-                'is_coast': self.is_coast,
-                'owner': self.owner,
-                'unit': unit}
+                'is_ocean'        : self.is_ocean,
+                'is_coast'        : self.is_coast,
+                'owner'           : self.owner,
+                'unit'            : unit}
 
     @classmethod
     def create_from_dict(cls, dict_):
