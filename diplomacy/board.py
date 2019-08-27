@@ -26,7 +26,7 @@ class Board:
         if interpreter != 'vanilla':
             raise ModuleNotFoundError('No module found named {}'.format(interpreter))
 
-        self.tiles = {}
+        # Passed properties
         self.interpreter = interpreter
         self.players = map_dict['players']
         self.year = map_dict['year']
@@ -34,12 +34,15 @@ class Board:
         self.phase = map_dict['phase']
 
         # Fill in initial tiles
+        self.tiles = {}
         for tile in map_dict['tiles']:
             self.tiles[tile['id']] = Tile.create_from_dict(tile)
 
         self.__verify_tiles()
         print(
             "Successfully verified map dict with {} entries and {} players.".format(len(self.tiles), len(self.players)))
+
+        self.moves = []
 
     @property
     def sc_counts(self):
@@ -51,6 +54,11 @@ class Board:
             if tile.owner is not None and not tile.is_coast:
                 sc_dict[tile.owner] += 1
         return sc_dict
+
+    @property
+    def num_supply_centers(self):
+        """Return the number of supply center tiles on the board"""
+        return sum(tile.is_supply_center and not tile.is_coast for tile in self.tiles.values())
 
     @property
     def num_ocean_tiles(self):
