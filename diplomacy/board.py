@@ -70,6 +70,33 @@ class Board:
             if tile.owner is not None:
                 assert tile.owner in self.players, 'Tile without valid owner found: {}'.format(tile.id)
 
+    def scramble(self):
+        """Completely shuffle the owners and units on each tile.
+            Maintains the number and type of units on the board.
+            Does not maintain the number of supply centers. (yet)
+            The board must have nonzero players"""
+        if len(self.players):
+            army_list = []
+            fleet_list = []
+            for tile in self.tiles.values():
+                tile.owner = random.choice(tuple(self.players))
+                if tile.unit is not None:
+                    if tile.unit.type == 'army':
+                        army_list.append(tile.unit)
+                    else:
+                        fleet_list.append(tile.unit)
+                    tile.unit = None
+            tiles = list(self.tiles.values())
+            while len(army_list) or len(fleet_list):
+                tile = random.choice(tiles)
+                if tile.unit is None:
+                    if (tile.is_ocean or tile.is_coast) and len(fleet_list):
+                        tile.unit = fleet_list.pop()
+                    elif not (tile.is_ocean or tile.is_coast) and len(army_list):
+                        tile.unit = army_list.pop()
+        else:
+            raise NotImplementedError("Can't shuffle a board with no players")
+
     def write_image(self, output_dir):  # TODO: Finish this so that you can decide the output file
         """Write the board as an image to the specified location"""
         if self.interpreter == 'vanilla':
@@ -106,33 +133,5 @@ class Board:
             return TURKEY
         else:
             raise AttributeError('Unknown country')
-
-    def scramble_board(self):
-        """Completely shuffle the owners and units on each tile.
-            Maintains the number and type of units on the board.
-            Does not maintain the number of supply centers. (yet)
-            The board must have nonzero players"""
-        if len(self.players):
-            army_list = []
-            fleet_list = []
-            for tile in self.tiles.values():
-                tile.owner = random.choice(tuple(self.players))
-                if tile.unit is not None:
-                    if tile.unit.type == 'army':
-                        army_list.append(tile.unit)
-                    else:
-                        fleet_list.append(tile.unit)
-                    tile.unit = None
-            tiles = list(self.tiles.values())
-            while len(army_list) or len(fleet_list):
-                tile = random.choice(tiles)
-                if tile.unit is None:
-                    if (tile.is_ocean or tile.is_coast) and len(fleet_list):
-                        tile.unit = fleet_list.pop()
-                    elif not (tile.is_ocean or tile.is_coast) and len(army_list):
-                        tile.unit = army_list.pop()
-        else:
-            raise NotImplementedError("Can't shuffle a board with no players")
-
 # TODO: Reimport pydip because you accidentally deleted the tests
 # TODO: Add tests
