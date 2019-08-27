@@ -1,4 +1,16 @@
 {
+  "year": 1901,
+  "season": "spring",
+  "phase": "diplomacy",
+  "players": [
+    "England",
+    "France",
+    "Germany",
+    "Italy",
+    "Russia",
+    "Austria",
+    "Turkey"
+  ],
   "tiles": [
     {
       "id": 0,

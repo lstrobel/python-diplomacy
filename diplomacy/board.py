@@ -28,13 +28,14 @@ class Board:
 
         self.tiles = {}
         self.interpreter = interpreter
-        self.players = set()
+        self.players = map_dict['players']
+        self.year = map_dict['year']
+        self.season = map_dict['season']
+        self.phase = map_dict['phase']
 
         # Fill in initial tiles
         for tile in map_dict['tiles']:
             self.tiles[tile['id']] = Tile.create_from_dict(tile)
-            if tile['owner'] is not None:
-                self.players.add(tile['owner'])
 
         self.__verify_tiles()
         print(
@@ -55,6 +56,7 @@ class Board:
                     if tile.unit is not None:
                         assert self.tiles[equiv_id].unit is None, \
                             'Two units on equivalent tiles, ids: {} and {}'.format(tile.id, self.tiles[equiv_id].id)
+            # Assert the units on this tile are valid
             if tile.unit is not None:
                 assert tile.unit.owner is not None, 'Unit with no owner in tile: {}'.format(tile.id)
                 assert tile.unit.owner in self.players, 'Unit found with unregistered player in tile {}'.format(tile.id)
@@ -64,6 +66,9 @@ class Board:
                 else:
                     assert tile.unit.type == 'army', \
                         'Non-army found on land, id: {}'.format(tile.id)
+            # Assert that the owner of this tile is valid
+            if tile.owner is not None:
+                assert tile.owner in self.players, 'Tile without valid owner found: {}'.format(tile.id)
 
     def write_image(self, output_dir):  # TODO: Finish this so that you can decide the output file
         """Write the board as an image to the specified location"""
@@ -131,4 +136,3 @@ class Board:
 
 # TODO: Reimport pydip because you accidentally deleted the tests
 # TODO: Add tests
-# TODO: Add game information to the json/dict
