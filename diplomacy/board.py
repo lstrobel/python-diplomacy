@@ -43,6 +43,7 @@ class Board:
 
     @property
     def sc_counts(self):
+        """Return a dict mapping player strings to the number of SCs they control"""
         sc_dict = {}
         for player in self.players:
             sc_dict[player] = 0
@@ -50,6 +51,16 @@ class Board:
             if tile.owner is not None and not tile.is_coast:
                 sc_dict[tile.owner] += 1
         return sc_dict
+
+    @property
+    def num_ocean_tiles(self):
+        """Return the number of ocean tiles on the board"""
+        return sum(tile.is_ocean for tile in self.tiles.values())
+
+    @property
+    def num_land_tiles(self):
+        """Return the number of land (non-ocean) tiles on the board"""
+        return len(self.tiles) - self.num_ocean_tiles
 
     def __verify_tiles(self):
         """Assert that the tiles are in a valid game state - DOESNT HAVE FULL COVERAGE!"""
