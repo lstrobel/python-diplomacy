@@ -1,5 +1,10 @@
 #  python-diplomacy is a tool for exploring the game diplomacy in python.
+#  Copyright (C) 2017 Aric Parkinson
 #  Copyright (C) 2019 Lukas Strobel
+#
+#  The following code is a derivative work of the code from Aric Parkinson's pydip,
+#  which is licensed MIT. This derivative is licensed under the terms
+#  of the GNU Affero General Public License, verison 3.
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
@@ -14,6 +19,5 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from diplomacy.board import Board
-from diplomacy.tile import Tile
-from diplomacy.unit import Unit
+from diplomacy.adjudication.pydip.player.player import Player
+from diplomacy.adjudication.pydip.player.unit import Unit, UnitTypes
