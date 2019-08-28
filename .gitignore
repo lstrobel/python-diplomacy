@@ -232,3 +232,5 @@ dmypy.json
 # End of https://www.gitignore.io/api/linux,python,pycharm+all
 /pydip/
 /diplomacy-tactical-map-master/
+/pydip-master/
+/diplomacy/visualization/out.png

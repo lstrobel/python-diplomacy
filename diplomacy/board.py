@@ -165,5 +165,3 @@ class Board:
             return TURKEY
         else:
             raise AttributeError('Unknown country')
-# TODO: Reimport pydip because you accidentally deleted the tests
-# TODO: Add tests
