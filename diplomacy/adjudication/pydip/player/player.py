@@ -4,7 +4,7 @@
 #
 #  The following code is a derivative work of the code from Aric Parkinson's pydip,
 #  which is licensed MIT. This derivative is licensed under the terms
-#  of the GNU Affero General Public License, verison 3.
+#  of the GNU Affero General Public License, version 3.
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as

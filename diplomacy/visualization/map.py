@@ -4,7 +4,7 @@
 #
 #  The following code is a derivative work of the code from davidoskky's diplomacy-tactical-map,
 #  which is licensed AGPLv3. This code therefore is also licensed under the terms
-#  of the GNU Affero General Public License, verison 3.
+#  of the GNU Affero General Public License, version 3.
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
