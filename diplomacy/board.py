@@ -129,7 +129,7 @@ class Board:
         else:
             raise NotImplementedError("Can't shuffle a board with no players")
 
-    def write_image(self, output_dir):  # TODO: Finish this so that you can decide the output file
+    def write_image(self, output_dir):
         """Write the board as an image to the specified location"""
         if self.interpreter == 'vanilla':
             for tile in self.tiles.values():
@@ -144,7 +144,7 @@ class Board:
                         army_hold(tile.aliases['short_name'])
                     elif tile.unit.type == 'fleet':
                         fleet_hold(tile.aliases['short_name'])
-            done()
+            done(output_dir)
 
     @staticmethod
     def __get_vis_country_class(name):
