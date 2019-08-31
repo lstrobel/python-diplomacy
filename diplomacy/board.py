@@ -121,22 +121,23 @@ class Board:
         """Completely shuffle the owners and units on each tile.
             Then adds a adequate number of units to the board (placing them anywhere).
             The board must have nonzero players"""
-        if len(self.players):
-            for tile in self.tiles.values():
-                tile.owner = random.choice(tuple(self.players))
-                tile.unit = None
-            tiles = list(self.tiles.values())
-            for country, count in self.sc_counts.items():
-                for _ in range(count):
-                    tile = random.choice(tiles)
-                    if tile.unit_include_equivs is None:
-                        if tile.is_ocean or tile.is_coast:
-                            tile.unit = Unit(country, 'fleet')
-                        elif not (tile.is_ocean or tile.is_coast):
-                            tile.unit = Unit(country, 'army')
-            self._validate_tiles()
-        else:
-            raise NotImplementedError("Can't shuffle a board with no players")
+        raise NotImplementedError("scramble has yet to be implemented after pydip addition")
+        # if len(self.players):
+        #     for tile in self.tiles.values():
+        #         tile.owner = random.choice(tuple(self.players))
+        #         tile.unit = None
+        #     tiles = list(self.tiles.values())
+        #     for country, count in self.sc_counts.items():
+        #         for _ in range(count):
+        #             tile = random.choice(tiles)
+        #             if tile.unit_include_equivs is None:
+        #                 if tile.is_ocean or tile.is_coast:
+        #                     tile.unit = Unit(country, 'fleet')
+        #                 elif not (tile.is_ocean or tile.is_coast):
+        #                     tile.unit = Unit(country, 'army')
+        #     self._validate_tiles()
+        # else:
+        #     raise NotImplementedError("Can't shuffle a board with no players")
 
     def write_image(self, output_dir):
         """Write the board as an image to the specified location"""
