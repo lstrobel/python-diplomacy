@@ -520,7 +520,6 @@ for t in DEFAULT_RUSSIA:
     set_color(t, COLOR_NEUTRAL)
 
 
-def done():
+def done(dir):
     assert_one_unit_per_loc()
-    write_substitution_image(IMAGE_MAP, '/media/Storage/Projects/python-diplomacy/diplomacy/visualization/out.png',
-                             init)
+    write_substitution_image(IMAGE_MAP, dir, init)

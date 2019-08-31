@@ -144,7 +144,7 @@ class Board:
                         army_hold(tile.aliases['short_name'])
                     elif tile.unit.type == 'fleet':
                         fleet_hold(tile.aliases['short_name'])
-            done()
+            done(output_dir)
 
     @staticmethod
     def __get_vis_country_class(name):
