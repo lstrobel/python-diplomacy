@@ -83,6 +83,7 @@ class Board:
         for tile in self.tiles.values():
             # Assert equivalent tiles have the same owner and supply center status
             if len(tile.equivalencies):
+                assert not tile.is_ocean, 'Ocean tile found with equivalencies: id {}'.format(tile.id)
                 for equiv_tile in tile.equivalencies:
                     assert equiv_tile.owner == tile.owner, \
                         'Mismatching owners for equivalent tiles: ids {} and {}'.format(tile.id, equiv_tile.id)
@@ -107,6 +108,9 @@ class Board:
                 assert tile.owner in self.players, 'Tile without valid owner found: id {}'.format(tile.id)
             # Assert each tile has at least one adjacency
             assert len(tile.adjacencies), 'Tile without adjacencies: id {}'.format(tile.id)
+            for adj_tile in tile.adjacencies:
+                assert tile in adj_tile.adjacencies, 'Unidirectional adjacency found: ids {} and {}'.format(tile.id,
+                                                                                                            adj_tile.id)
 
     def scramble(self):
         """Completely shuffle the owners and units on each tile.
