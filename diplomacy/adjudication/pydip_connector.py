@@ -1,7 +1,9 @@
 from diplomacy.adjudication.pydip.map import Map, SupplyCenterMap, OwnershipMap
+from diplomacy.adjudication.pydip.player import Unit, UnitTypes
 
 
 def _create_starting_pydip_map(tiles):
+    """Create an ownership map for pydip to use"""
     territory_descriptors = []
     visited = set()
     adjacencies = []
@@ -35,3 +37,18 @@ def _create_starting_pydip_map(tiles):
     generate_supply_center_map = SupplyCenterMap(generate_map, supply_centers)
 
     return OwnershipMap(generate_supply_center_map, home_territories, home_territories)
+
+
+def _get_starting_configs(tiles):
+    """Return a map of players to a set of pydip units they control"""
+    configs = {}
+    for tile in tiles.values():
+        if tile.unit is not None:
+            if tile.unit.owner not in configs:
+                configs[tile.unit.owner] = set()
+
+            if tile.unit.type == 'army':
+                configs[tile.unit.owner].add(Unit(UnitTypes.TROOP, str(tile.id)))
+            else:
+                configs[tile.unit.owner].add(Unit(UnitTypes.FLEET, str(tile.id)))
+    return configs

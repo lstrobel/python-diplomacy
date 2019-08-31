@@ -13,11 +13,9 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import random
-
-from diplomacy.adjudication.pydip_connector import _create_starting_pydip_map
+from diplomacy.adjudication.pydip.player import Player
+from diplomacy.adjudication.pydip_connector import _create_starting_pydip_map, _get_starting_configs
 from diplomacy.tile import Tile
-from diplomacy.unit import Unit
 from diplomacy.visualization.map import *
 
 
@@ -30,7 +28,7 @@ class Board:
 
         # Passed properties
         self.interpreter = interpreter
-        self.players = map_dict['players']
+        self.players = {player_name: None for player_name in map_dict['players']}
         self.year = map_dict['year']
         self.season = map_dict['season']
         self.phase = map_dict['phase']
@@ -54,7 +52,9 @@ class Board:
         if self.interpreter == 'vanilla':
             # Setup pydip map
             pydip_map = _create_starting_pydip_map(self.tiles).supply_map.game_map
-
+            for name, units in _get_starting_configs(self.tiles).items():
+                starting_config = [dict(territory_name=u.position, unit_type=u.unit_type) for u in units]
+                self.players[name] = Player(name, pydip_map, starting_config)
         self.moves = []
 
     @property
