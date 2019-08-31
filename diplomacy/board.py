@@ -15,9 +15,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import random
 
-from diplomacy.adjudication.pydip.map import OwnershipMap
-from diplomacy.adjudication.pydip.map.predefined import vanilla_dip
-from diplomacy.adjudication.pydip_connector import _create_pydip_map
+from diplomacy.adjudication.pydip_connector import _create_starting_pydip_map
 from diplomacy.tile import Tile
 from diplomacy.unit import Unit
 from diplomacy.visualization.map import *
@@ -55,16 +53,8 @@ class Board:
 
         if self.interpreter == 'vanilla':
             # Setup pydip map
-            """
-            There is potential here to just override the generate_x_map() functions
-            to make pydip work with any map, not just the vanilla board
-            """
-            vanilla_map = vanilla_dip.generate_starting_ownership_map()
-            OwnershipMap(vanilla_dip.generate_supply_center_map(), vanilla_dip.generate_home_territories(),
-                         vanilla_dip.generate_home_territories())
-            game_map = vanilla_map.supply_map.game_map
+            pydip_map = _create_starting_pydip_map(self.tiles).supply_map.game_map
 
-            map = _create_pydip_map(self.tiles)
         self.moves = []
 
     @property
