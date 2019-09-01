@@ -1,14 +1,15 @@
-from diplomacy.adjudication.pydip.map import Map, SupplyCenterMap, OwnershipMap
+from diplomacy.adjudication.pydip.map import Map, OwnershipMap, SupplyCenterMap
 from diplomacy.adjudication.pydip.player import Unit, UnitTypes
 
 
-def _create_starting_pydip_map(tiles):
+def create_starting_pydip_map(tiles):
     """Create an ownership map for pydip to use"""
     territory_descriptors = []
     visited = set()
     adjacencies = []
     supply_centers = set()
     home_territories = {}
+    owned_territories = {}
     for tile in tiles.values():
         # Add to territory_descriptors
         if not tile.is_coast:
@@ -27,19 +28,25 @@ def _create_starting_pydip_map(tiles):
         if tile.is_supply_center:
             supply_centers.add(str(tile.id))
 
-        # Add to home territories
+        # Add to owned territories
         if tile.owner is not None and tile.is_supply_center:
-            if tile.owner not in home_territories:
-                home_territories[tile.owner] = set()
-            home_territories[tile.owner].add(str(tile.id))
+            if tile.owner not in owned_territories:
+                owned_territories[tile.owner] = set()
+            owned_territories[tile.owner].add(str(tile.id))
+
+        # Add to home territories
+        if tile.is_supply_center and tile.home_center_for is not None:
+            if tile.home_center_for not in home_territories:
+                home_territories[tile.home_center_for] = set()
+            home_territories[tile.home_center_for].add(str(tile.id))
 
     generate_map = Map(territory_descriptors, adjacencies)
     generate_supply_center_map = SupplyCenterMap(generate_map, supply_centers)
 
-    return OwnershipMap(generate_supply_center_map, home_territories, home_territories)
+    return OwnershipMap(generate_supply_center_map, owned_territories, home_territories)
 
 
-def _get_starting_configs(tiles):
+def get_starting_configs(tiles):
     """Return a map of players to a set of pydip units they control"""
     configs = {}
     for tile in tiles.values():
