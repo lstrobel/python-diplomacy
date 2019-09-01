@@ -113,7 +113,12 @@ class Board:
                 assert tile.owner in self.players, 'Tile without valid owner found: id {}'.format(tile.id)
             # Assert each tile has at least one adjacency
             assert len(tile.adjacencies), 'Tile without adjacencies: id {}'.format(tile.id)
+            # Assert that home centers are for a valid player
+            if tile.home_center_for is not None:
+                assert tile.home_center_for in self.players, 'Home center has invalid player string: id {}'.format(
+                    tile.id)
             for adj_tile in tile.adjacencies:
+                # Assert adjacencies are bidirectional
                 assert tile in adj_tile.adjacencies, 'Unidirectional adjacency found: ids {} and {}'.format(tile.id,
                                                                                                             adj_tile.id)
 
