@@ -61,7 +61,7 @@ class MoveCommand(Command):
         assert (
                 unit_can_enter(game_map, unit, game_map.name_map[destination]) or
                 unit.position == destination
-        )
+        ), "Invalid destination for unit"
         self.destination = destination
 
     def __eq__(self, other):

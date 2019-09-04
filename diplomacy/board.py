@@ -13,9 +13,12 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-from diplomacy.adjudication.pydip.player import Player
-from diplomacy.adjudication.pydip_connector import _create_starting_pydip_map, _get_starting_configs
+from diplomacy.adjudication.pydip.test import TurnHelper, PlayerHelper
+from diplomacy.adjudication.pydip_connector import create_pydip_map, convert_order_to_pydip_commandhelper, \
+    unit_type_to_str
+from diplomacy.order import Order
 from diplomacy.tile import Tile
+from diplomacy.unit import Unit
 from diplomacy.visualization.map import *
 
 
@@ -34,28 +37,23 @@ class Board:
         self.phase = map_dict['phase']
 
         # Fill in initial tiles
-        self.tiles = {}
-        # First loop: get all of the tiles in memory
-        for tile in map_dict['tiles']:
-            self.tiles[tile['id']] = Tile.create_from_dict(tile)
-        # Second loop: add equivalencies and adjacencies
+        self.tiles = {tile['id']: Tile.create_from_dict(tile) for tile in map_dict['tiles']}
+        self.alias_map = {None: None}
+        # Add equivalencies and adjacencies - and add to alias_map
         for tile in map_dict['tiles']:
             for equiv_id in tile['equivalencies']:
                 self.tiles[tile['id']].equivalencies.append(self.tiles[equiv_id])
             for adjacent_id in tile['adjacencies']:
                 self.tiles[tile['id']].adjacencies.append(self.tiles[adjacent_id])
+            for alias in tile['aliases'].values():
+                self.alias_map[alias] = tile['id']
+            self.alias_map[str(tile['id'])] = tile['id']
 
         self._validate_tiles()
         print(
             "Successfully verified map dict with {} entries and {} players.".format(len(self.tiles), len(self.players)))
-
-        if self.interpreter == 'vanilla':
-            # Setup pydip map
-            pydip_map = _create_starting_pydip_map(self.tiles).supply_map.game_map
-            for name, units in _get_starting_configs(self.tiles).items():
-                starting_config = [dict(territory_name=u.position, unit_type=u.unit_type) for u in units]
-                self.players[name] = Player(name, pydip_map, starting_config)
-        self.moves = []
+        self.previous_orders = []
+        self.orders = []
 
     @property
     def sc_counts(self):
@@ -161,6 +159,40 @@ class Board:
                         fleet_hold(tile.aliases['short_name'])
             done(output_dir)
 
+    def resolve_orders(self):
+        """Parse all orders and resolve the board accordingly. If no orders exist for a unit, it adds a hold order"""
+        pydip_map = create_pydip_map(self.tiles)
+        if self.phase == 'diplomacy':
+            player_order_map = {player: [] for player in self.players}
+            tiles_with_orders = set()
+            for order in self.orders:  # Collect and convert orders
+                player_order_map[order.player].append(
+                    convert_order_to_pydip_commandhelper(self.tiles, self.alias_map, order))
+                tiles_with_orders.add(self.alias_map[order.source_tile])
+
+            for tile in self.tiles.values():  # Add hold orders for every unit without an order
+                if (tile.unit is not None) and (tile.id not in tiles_with_orders):
+                    player_order_map[tile.unit.owner].append(
+                        convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
+                                                             Order(tile.unit.owner, str(tile.id))))
+
+            player_helpers = [PlayerHelper(player, orders) for player, orders in player_order_map.items()]
+            helper = TurnHelper(player_helpers, game_map=pydip_map.supply_map.game_map)
+            results = helper.resolve()
+            # Update units
+            for tile in self.tiles.values():
+                tile.unit = None
+
+            for player, result_dict in results.items():
+                for result_unit in result_dict:
+                    self.tiles[int(result_unit.position)].unit = Unit(player, unit_type_to_str(result_unit.unit_type))
+
+            # TODO: Increment phase
+        elif self.phase == 'retreats':
+            pass
+        elif self.phase == 'unit-placement':
+            pass
+
     @staticmethod
     def __get_vis_country_class(name):
         """Return the map-object corresponding to the vanilla country passed"""
@@ -180,3 +212,6 @@ class Board:
             return TURKEY
         else:
             raise AttributeError('Unknown country')
+
+# TODO: Remove 'short_name' dependency from write_image() and update self.aliases construction accordingly
+# TODO: Add move visualization to write_image()

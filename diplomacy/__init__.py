@@ -15,5 +15,6 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from diplomacy.board import Board
+from diplomacy.order import Order
 from diplomacy.tile import Tile
 from diplomacy.unit import Unit
