@@ -62,7 +62,7 @@ class Board:
         for player in self.players:
             sc_dict[player] = 0
         for tile in self.tiles.values():
-            if tile.owner is not None and not tile.is_coast:
+            if tile.owner is not None and not tile.is_coast and tile.is_supply_center:
                 sc_dict[tile.owner] += 1
         return sc_dict
 
