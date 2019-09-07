@@ -31,7 +31,7 @@ class Board:
 
         # Passed properties
         self.interpreter = interpreter
-        self.players = {player_name: None for player_name in map_dict['players']}
+        self.players = {player_name for player_name in map_dict['players']}
         self.year = map_dict['year']
         self.season = map_dict['season']
         self.phase = map_dict['phase']
@@ -158,6 +158,13 @@ class Board:
                     elif tile.unit.type == 'fleet':
                         fleet_hold(tile.aliases['short_name'])
             done(output_dir)
+
+    def serialize(self):
+        """Serialize this Board into a dict that can be used to construct another Board"""
+        out_dict = {'year': self.year, 'season': self.season, 'phase': self.phase, 'players': list(self.players)}
+        tile_dict = [tile.serialize() for tile in self.tiles.values()]
+        out_dict['tiles'] = tile_dict
+        return out_dict
 
     def resolve_orders(self):
         """Parse all orders and resolve the board accordingly. If no orders exist for a unit, it adds a hold order"""
