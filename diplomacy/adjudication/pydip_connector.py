@@ -2,7 +2,7 @@ import copy
 
 from diplomacy.adjudication.pydip.map import Map, OwnershipMap, SupplyCenterMap
 from diplomacy.adjudication.pydip.player import Unit, UnitTypes
-from diplomacy.adjudication.pydip.test import CommandHelper, CommandType
+from diplomacy.adjudication.pydip.test.command_helper import *
 
 
 def create_pydip_map(tiles):
@@ -64,7 +64,7 @@ def get_starting_configs(tiles):
     return configs
 
 
-def convert_order_to_pydip_commandhelper(tiles, aliases, order_):
+def convert_order_to_pydip_commandhelper(tiles, aliases, order_, phase='retreats', retreat_map=None):
     # Convert string tile names to ids for internal pydip representations
     order = copy.deepcopy(order_)
     order.source_tile = str(aliases[order_.source_tile])
@@ -89,9 +89,13 @@ def convert_order_to_pydip_commandhelper(tiles, aliases, order_):
         return CommandHelper(CommandType.CONVOY_TRANSPORT, unit_type, order.source_tile, order.target_tile,
                              order.destination_tile)
     elif order.type == 'retreat':
-        raise NotImplementedError
+        return RetreatCommandHelper(RetreatCommandType.MOVE, retreat_map, unit_type, order.source_tile,
+                                    order.destination_tile)
     elif order.type == 'disband':
-        raise NotImplementedError
+        if phase == 'retreats':
+            return RetreatCommandHelper(RetreatCommandType.DISBAND, retreat_map, unit_type, order.source_tile)
+        elif phase == 'unit-placement':
+            raise NotImplementedError
     elif order.type == 'build':
         raise NotImplementedError
 

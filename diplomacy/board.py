@@ -13,7 +13,10 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 from diplomacy.adjudication.pydip.test import TurnHelper, PlayerHelper
+from diplomacy.adjudication.pydip.test.adjustment_helper import AdjustmentHelper
+from diplomacy.adjudication.pydip.test.retreat_helper import RetreatHelper
 from diplomacy.adjudication.pydip_connector import create_pydip_map, convert_order_to_pydip_commandhelper, \
     unit_type_to_str
 from diplomacy.order import Order
@@ -52,7 +55,8 @@ class Board:
         self._validate_tiles()
         print(
             "Successfully verified map dict with {} entries and {} players.".format(len(self.tiles), len(self.players)))
-        self.previous_orders = []
+        self.previous_orders = None
+        self._previous_results = None
         self.orders = []
 
     @property
@@ -169,36 +173,105 @@ class Board:
     def resolve_orders(self):
         """Parse all orders and resolve the board accordingly. If no orders exist for a unit, it adds a hold order"""
         pydip_map = create_pydip_map(self.tiles)
-        if self.phase == 'diplomacy':
-            player_order_map = {player: [] for player in self.players}
-            tiles_with_orders = set()
-            for order in self.orders:  # Collect and convert orders
-                player_order_map[order.player].append(
-                    convert_order_to_pydip_commandhelper(self.tiles, self.alias_map, order))
-                tiles_with_orders.add(self.alias_map[order.source_tile])
+        player_order_map, tiles_with_orders = self._get_pydip_orders()
 
-            for tile in self.tiles.values():  # Add hold orders for every unit without an order
-                if (tile.unit is not None) and (tile.id not in tiles_with_orders):
-                    player_order_map[tile.unit.owner].append(
-                        convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
-                                                             Order(tile.unit.owner, str(tile.id))))
+        if self.phase == 'unit-placement':
+            helper = AdjustmentHelper()
+        else:  # diplomacy and retreats
+            if self.phase == 'diplomacy':
+                # Add hold orders for every unit without an order
+                for tile in self.tiles.values():
+                    if (tile.unit is not None) and (tile.id not in tiles_with_orders):
+                        player_order_map[tile.unit.owner].append(
+                            convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
+                                                                 Order(tile.unit.owner, str(tile.id))))
+            elif self.phase == 'retreats':
+                # Disband units that need to retreat but don't have an order
+                for player, move_dict in self._previous_results.items():
+                    for unit, move_set in move_dict.items():
+                        if (move_set is not None) and (int(unit.position) not in tiles_with_orders):
+                            player_order_map[player].append(
+                                convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
+                                                                     Order(player, unit.position, 'disband'),
+                                                                     retreat_map=self._previous_results))
 
             player_helpers = [PlayerHelper(player, orders) for player, orders in player_order_map.items()]
-            helper = TurnHelper(player_helpers, game_map=pydip_map.supply_map.game_map)
+
+            if self.phase == 'diplomacy':
+                helper = TurnHelper(player_helpers, game_map=pydip_map.supply_map.game_map)
+            elif self.phase == 'retreats':
+                helper = RetreatHelper(self._previous_results, player_helpers, game_map=pydip_map.supply_map.game_map)
             results = helper.resolve()
-            # Update units
-            for tile in self.tiles.values():
-                tile.unit = None
+            self._update_units(results)
+            print(results)
 
-            for player, result_dict in results.items():
-                for result_unit in result_dict:
-                    self.tiles[int(result_unit.position)].unit = Unit(player, unit_type_to_str(result_unit.unit_type))
+            if self.phase == 'diplomacy' and (not all(
+                    all(retreat_options == None for retreat_options in country.values()) for country in
+                    results.values())):  # There are retreats to be made
+                self.phase = 'retreats'
+            else:
+                print("here")
+                self._increment_diplomacy()
 
-            # TODO: Increment phase
-        elif self.phase == 'retreats':
-            pass
-        elif self.phase == 'unit-placement':
-            pass
+        # TODO: Somehow notify/inform clients of what needs to be retreated/disbanded/built
+
+        self.previous_orders = self.orders
+        self._previous_results = results
+        self.orders = []
+
+    def _increment_diplomacy(self):
+        # TODO: Once everything is ready, see if you can make this able to be called safely (not private)
+        """Increment to the next diplomacy phase, or to unit-placement if necessary"""
+        if self.season == 'fall':
+            # Determine if a unit-placement phase is necessary
+            initial_sc_counts = self.sc_counts
+            self._update_ownerships()
+            new_counts = self.sc_counts
+            deltas = {player: new_counts[player] - count for player, count in initial_sc_counts.items()}
+
+            if all(delta == 0 for delta in deltas.values()):  # No unit-placement necessary
+                self.phase = 'unit-placement'
+            else:
+                self._increment_season()
+                self.phase = 'diplomacy'
+        else:  # We are in spring, so just continue to the next diplomacy phase
+            self._increment_season()
+            self.phase = 'diplomacy'
+
+    def _update_units(self, results):
+        """Using the passed results, change the units on the board to match their new positions"""
+        # TODO: Respect retreating units as underneath
+        # Clear all units
+        for tile in self.tiles.values():
+            tile.unit = None
+        # Write new unit positions
+        for player, result_dict in results.items():
+            for result_unit in result_dict:
+                self.tiles[int(result_unit.position)].unit = Unit(player, unit_type_to_str(result_unit.unit_type))
+
+    def _get_pydip_orders(self):
+        """Convert all orders in self.orders to pydip orders and return them"""
+        player_order_map = {player: [] for player in self.players}
+        tiles_with_orders = set()
+        for order in self.orders:  # Collect and convert orders
+            player_order_map[order.player].append(
+                convert_order_to_pydip_commandhelper(self.tiles, self.alias_map, order))
+            tiles_with_orders.add(self.alias_map[order.source_tile])
+        return player_order_map, tiles_with_orders
+
+    def _increment_season(self):
+        """Increment the game season and year without regard to phase"""
+        if self.season == 'spring':
+            self.season = 'fall'
+        else:
+            self.year = str(int(self.year) + 1)
+            self.season = 'spring'
+
+    def _update_ownerships(self):
+        """Update the ownership of tiles to whichever unit is on them at the moment"""
+        for tile in self.tiles.values():
+            if tile.unit is not None:
+                tile.owner = tile.unit.owner
 
     @staticmethod
     def __get_vis_country_class(name):
