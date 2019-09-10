@@ -23,13 +23,13 @@ test_data = [(Unit('Germany', 'army'), {'owner': 'Germany', 'type': 'army'}),
              (Unit('Austria', 'army'), {'owner': 'Austria', 'type': 'army'})]
 
 
-@pytest.mark.parametrize('unit,out_dict', test_data)
+@pytest.mark.parametrize('unit, out_dict', test_data)
 def test_serialize(unit, out_dict):
     """Test that units serialize correctly"""
     assert unit.serialize() == out_dict
 
 
-@pytest.mark.parametrize('unit,dict_', test_data)
+@pytest.mark.parametrize('unit, dict_', test_data)
 def test_create_from_dict(unit, dict_):
     """Test that units deserialize correctly"""
     assert Unit.create_from_dict(dict_).__dict__ == unit.__dict__

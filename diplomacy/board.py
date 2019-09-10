@@ -13,11 +13,12 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+from queue import Queue
 
-from diplomacy.adjudication.pydip.test import TurnHelper, PlayerHelper
+from diplomacy.adjudication.pydip.test import PlayerHelper, TurnHelper
 from diplomacy.adjudication.pydip.test.adjustment_helper import AdjustmentHelper
 from diplomacy.adjudication.pydip.test.retreat_helper import RetreatHelper
-from diplomacy.adjudication.pydip_connector import create_pydip_map, convert_order_to_pydip_commandhelper, \
+from diplomacy.adjudication.pydip_connector import convert_order_to_pydip_commandhelper, create_pydip_map, \
     unit_type_to_str
 from diplomacy.order import Order
 from diplomacy.tile import Tile
@@ -218,6 +219,44 @@ class Board:
         self.previous_orders = self.orders
         self._previous_results = results
         self.orders = []
+
+    def _find_unit_to_disband(self, player):
+        """Searches for a unit to disband if not disband orders were given, but one is needed.
+         Prioritizes units furthest away from a home center, then fleets over armies,
+         then in tile alphabetical order if there is still a tie. Returns the tile that this unit is on"""
+        distances = {}
+        for tile in self.tiles.values():
+            if tile.unit is not None and tile.unit.owner == player:
+                distances[tile] = self._distance_to_home_center(tile, player)
+        max_distance = max(distances.values())
+        furthest_tiles = [tile for tile, distance in distances.items() if distance == max_distance]
+        if len(furthest_tiles) > 1:
+            fleets = [tile for tile in furthest_tiles if tile.unit.type == 'fleet']
+            if len(fleets) > 1:
+                fleets.sort(
+                    key=lambda x: x.aliases["long_name"])  # TODO: Remove alias dependency when refactoring later
+            return fleets[0]
+        else:
+            return furthest_tiles[0]
+
+    def _distance_to_home_center(self, tile, player):
+        """Finds the distance between the given tile and a home center for the given player"""
+        # Currently implemented using BFS
+        queue = Queue()
+        visited = {tile: 0}
+        queue.put(tile)
+        while not queue.empty():
+            next_tile = queue.get()
+            if next_tile.home_center_for == player:
+                return visited[next_tile]
+            for equivalent_tile in next_tile.equivalencies:
+                if equivalent_tile not in visited:
+                    visited[equivalent_tile] = visited[next_tile]
+                    queue.put(equivalent_tile)
+            for adjacent_tile in next_tile.adjacencies:
+                if adjacent_tile not in visited:
+                    visited[adjacent_tile] = visited[next_tile] + 1
+                    queue.put(adjacent_tile)
 
     def _increment_diplomacy(self):
         # TODO: Once everything is ready, see if you can make this able to be called safely (not private)
