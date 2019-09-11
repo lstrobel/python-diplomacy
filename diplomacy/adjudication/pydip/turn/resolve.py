@@ -263,8 +263,8 @@ def _adjudicate_move(game_map, command_map, command):
     attack_strength = _attack_strength(game_map, command_map, command)
 
     prevent_combatants = _get_prevent_combatants(command_map, command)
-    high_prevent_strength = max([_prevent_strength(game_map, command_map, prevent_combatant)
-                                 for prevent_combatant in prevent_combatants] + [0])
+    high_prevent_strength = max(
+        [_prevent_strength(game_map, command_map, prevent_combatant) for prevent_combatant in prevent_combatants] + [0])
     if attack_strength <= high_prevent_strength:
         return False
 
@@ -304,12 +304,11 @@ def _attack_strength(game_map, command_map, command):
     if attacked_command is None:
         return 1 + len(list(supporters))
     if (_get_head_to_head_combatant(game_map, command_map, command) is None) and \
-            isinstance(attacked_command, MoveCommand) or isinstance(attacked_command, ConvoyMoveCommand) and \
+            (isinstance(attacked_command, MoveCommand) or isinstance(attacked_command, ConvoyMoveCommand)) and \
             _resolve(game_map, command_map, attacked_command):
         return 1 + len(list(supporters))
     if attacked_command.player.name == command.player.name:
         return 0
-
     supporters = filter(lambda c: c.player.name != attacked_command.player.name, supporters)
     return 1 + len(list(supporters))
 
