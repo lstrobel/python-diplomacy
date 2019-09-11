@@ -13,13 +13,14 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-from queue import Queue
+from collections import deque
 
 from diplomacy.adjudication.pydip.test import PlayerHelper, TurnHelper
 from diplomacy.adjudication.pydip.test.adjustment_helper import AdjustmentHelper
+from diplomacy.adjudication.pydip.test.command_helper import AdjustmentCommandType
 from diplomacy.adjudication.pydip.test.retreat_helper import RetreatHelper
 from diplomacy.adjudication.pydip_connector import convert_order_to_pydip_commandhelper, create_pydip_map, \
-    unit_type_to_str
+    get_player_units, unit_type_to_str
 from diplomacy.order import Order
 from diplomacy.tile import Tile
 from diplomacy.unit import Unit
@@ -85,6 +86,19 @@ class Board:
     def num_land_tiles(self):
         """Return the number of land (non-ocean) tiles on the board"""
         return len(self.tiles) - self.num_ocean_tiles
+
+    @property
+    def unit_deltas(self):
+        """Return a dict mapping players to the delta between the number of SCs
+        they control and how many units they have"""
+        counts = self.sc_counts
+        deltas = {}
+        for tile in self.tiles.values():
+            if tile.unit is not None:
+                if tile.unit.owner not in deltas:
+                    deltas[tile.unit.owner] = counts[tile.unit.owner]
+                deltas[tile.unit.owner] -= 1
+        return deltas
 
     def _validate_tiles(self):
         """Assert that the tiles are in a valid game state - DOESNT HAVE FULL COVERAGE!"""
@@ -176,37 +190,64 @@ class Board:
         pydip_map = create_pydip_map(self.tiles)
         player_order_map, tiles_with_orders = self._get_pydip_orders()
 
+        # Arrange default orders
+        if self.phase == 'diplomacy':
+            self._add_default_hold_orders(player_order_map, tiles_with_orders)
+        elif self.phase == 'retreats':
+            self._add_default_disband_orders(player_order_map, tiles_with_orders)
+        elif self.phase == 'unit-placement':
+            self._add_default_unit_placement_orders(player_order_map)
+
+        # Setup PlayerHelpers
+        player_helpers = [PlayerHelper(player, orders) for player, orders in player_order_map.items()]
+
+        # Build the right turn helper
+        if self.phase == 'diplomacy':
+            helper = TurnHelper(player_helpers, game_map=pydip_map.supply_map.game_map)
+        elif self.phase == 'retreats':
+            helper = RetreatHelper(self._previous_results, player_helpers, game_map=pydip_map.supply_map.game_map)
+        elif self.phase == 'unit-placement':
+            helper = AdjustmentHelper(player_helpers, player_units=get_player_units(self.tiles),
+                                      owned_territories=pydip_map.owned_territories,
+                                      home_territories=pydip_map.home_territories, supply_map=pydip_map.supply_map)
+
+        # Resolve move
         if self.phase == 'unit-placement':
-            helper = AdjustmentHelper()
-        else:  # diplomacy and retreats
-            if self.phase == 'diplomacy':
-                self._add_default_hold_orders(player_order_map, tiles_with_orders)
-            elif self.phase == 'retreats':
-                self._add_default_disband_orders(player_order_map, tiles_with_orders)
-
-            player_helpers = [PlayerHelper(player, orders) for player, orders in player_order_map.items()]
-
-            if self.phase == 'diplomacy':
-                helper = TurnHelper(player_helpers, game_map=pydip_map.supply_map.game_map)
-            elif self.phase == 'retreats':
-                helper = RetreatHelper(self._previous_results, player_helpers, game_map=pydip_map.supply_map.game_map)
+            results = helper.resolve__validated()
+        else:
             results = helper.resolve()
-            self._update_units(results)
-            print(results)
+        self._update_units(results)
 
-            if self.phase == 'diplomacy' and (not all(
-                    all(retreat_options == None for retreat_options in country.values()) for country in
-                    results.values())):  # There are retreats to be made
-                self.phase = 'retreats'
-            else:
-                print("here")
-                self._increment_diplomacy()
+        # Increment phase
+        if self.phase == 'diplomacy' and (not all(
+                all(retreat_options == None for retreat_options in country.values()) for country in
+                results.values())):  # There are retreats to be made
+            self.phase = 'retreats'
+        else:
+            self._increment_diplomacy()
 
-        # TODO: Somehow notify/inform clients of what needs to be retreated/disbanded/built
-
+        # Set properties for the future
         self.previous_orders = self.orders
         self._previous_results = results
         self.orders = []
+
+        # TODO: Somehow notify/inform clients of what needs to be retreated/disbanded/built
+
+    def _add_default_unit_placement_orders(self, player_order_map):
+        """Disband excess units for players if they didnt give disband orders"""
+        deltas = self.unit_deltas
+        disbanded_tiles = set()
+        for player, delta in deltas.items():
+            # Compensate for existing disband orders
+            delta += len([x for x in player_order_map[player] if x.command_type == AdjustmentCommandType.DISBAND])
+            while delta < 0:
+                disband_tile = self._find_unit_to_disband(player, disbanded_tiles)
+                disbanded_tiles.add(disband_tile)
+                player_order_map[player].append(convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
+                                                                                     Order(player, str(disband_tile.id),
+                                                                                           'disband'),
+                                                                                     phase='unit-placement'))
+                delta += 1
 
     def _add_default_disband_orders(self, player_order_map, tiles_with_orders):
         """Disband units that need to retreat but don't have an order"""
@@ -226,13 +267,15 @@ class Board:
                     convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
                                                          Order(tile.unit.owner, str(tile.id))))
 
-    def _find_unit_to_disband(self, player):
+    def _find_unit_to_disband(self, player, excluded=None):
         """Searches for a unit to disband if not disband orders were given, but one is needed.
          Prioritizes units furthest away from a home center, then fleets over armies,
          then in tile alphabetical order if there is still a tie. Returns the tile that this unit is on"""
+        if excluded is None:
+            excluded = []
         distances = {}
         for tile in self.tiles.values():
-            if tile.unit is not None and tile.unit.owner == player:
+            if tile.unit is not None and tile.unit.owner == player and tile not in excluded:
                 distances[tile] = self._distance_to_home_center(tile, player)
         max_distance = max(distances.values())
         furthest_tiles = [tile for tile, distance in distances.items() if distance == max_distance]
@@ -248,33 +291,31 @@ class Board:
     def _distance_to_home_center(self, tile, player):
         """Finds the distance between the given tile and a home center for the given player"""
         # Currently implemented using BFS
-        queue = Queue()
+        queue = deque()
         visited = {tile: 0}
-        queue.put(tile)
-        while not queue.empty():
-            next_tile = queue.get()
+        queue.append(tile)
+        while len(queue):
+            next_tile = queue.popleft()
             if next_tile.home_center_for == player:
                 return visited[next_tile]
             for equivalent_tile in next_tile.equivalencies:
                 if equivalent_tile not in visited:
                     visited[equivalent_tile] = visited[next_tile]
-                    queue.put(equivalent_tile)
+                    queue.append(equivalent_tile)
             for adjacent_tile in next_tile.adjacencies:
                 if adjacent_tile not in visited:
                     visited[adjacent_tile] = visited[next_tile] + 1
-                    queue.put(adjacent_tile)
+                    queue.append(adjacent_tile)
 
     def _increment_diplomacy(self):
         # TODO: Once everything is ready, see if you can make this able to be called safely (not private)
         """Increment to the next diplomacy phase, or to unit-placement if necessary"""
         if self.season == 'fall':
             # Determine if a unit-placement phase is necessary
-            initial_sc_counts = self.sc_counts
             self._update_ownerships()
-            new_counts = self.sc_counts
-            deltas = {player: new_counts[player] - count for player, count in initial_sc_counts.items()}
 
-            if all(delta == 0 for delta in deltas.values()):  # No unit-placement necessary
+            if not all(delta == 0 for delta in self.unit_deltas.values()):  # No unit-placement necessary
+                print(self.unit_deltas)
                 self.phase = 'unit-placement'
             else:
                 self._increment_season()
@@ -290,8 +331,8 @@ class Board:
         for tile in self.tiles.values():
             tile.unit = None
         # Write new unit positions
-        for player, result_dict in results.items():
-            for result_unit in result_dict:
+        for player, result_set in results.items():
+            for result_unit in result_set:
                 self.tiles[int(result_unit.position)].unit = Unit(player, unit_type_to_str(result_unit.unit_type))
 
     def _get_pydip_orders(self):

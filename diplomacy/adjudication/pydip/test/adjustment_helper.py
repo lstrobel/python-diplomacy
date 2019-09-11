@@ -73,9 +73,9 @@ class AdjustmentHelper:
 
     def _build_command(self, player, command):
         unit = Unit(command.unit_type, command.territory)
-        if command.type == AdjustmentCommandType.CREATE:
+        if command.command_type == AdjustmentCommandType.CREATE:
             return AdjustmentCreateCommand(self.ownership_map, player, unit)
-        if command.type == AdjustmentCommandType.DISBAND:
+        if command.command_type == AdjustmentCommandType.DISBAND:
             return AdjustmentDisbandCommand(player, unit)
         raise ValueError("Invalid command type: {}".format(command.type))
 

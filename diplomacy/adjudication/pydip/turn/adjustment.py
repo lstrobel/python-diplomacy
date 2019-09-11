@@ -188,6 +188,7 @@ def _validate_adjustments(ownership_map, adjustment_counts, commands):
             if player not in provided_adjustment_terriories:
                 provided_adjustment_terriories[player] = set()
             elif adjustment_counts[player] > 0:
+                print("yeet", adjustment_counts)
                 raise AssertionError("{} attempting to Disband when expected to Create".format(player))
             elif len(provided_adjustment_terriories[player]) >= -adjustment_counts[player]:
                 raise AssertionError("{} attempting to Disband too many units in one turn".format(player))

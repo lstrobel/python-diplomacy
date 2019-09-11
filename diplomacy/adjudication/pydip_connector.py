@@ -28,17 +28,17 @@ def create_pydip_map(tiles):
         visited.add(tile)
 
         # Add to supply_centers
-        if tile.is_supply_center:
+        if tile.is_supply_center and not tile.is_coast:
             supply_centers.add(str(tile.id))
 
         # Add to owned territories
-        if tile.owner is not None and tile.is_supply_center:
+        if tile.owner is not None and tile.is_supply_center and not tile.is_coast:
             if tile.owner not in owned_sc_territories:
                 owned_sc_territories[tile.owner] = set()
             owned_sc_territories[tile.owner].add(str(tile.id))
 
         # Add to home territories
-        if tile.is_supply_center and tile.home_center_for is not None:
+        if tile.is_supply_center and not tile.is_coast and tile.home_center_for is not None:
             if tile.home_center_for not in home_territories:
                 home_territories[tile.home_center_for] = set()
             home_territories[tile.home_center_for].add(str(tile.id))
@@ -49,7 +49,7 @@ def create_pydip_map(tiles):
     return OwnershipMap(generate_supply_center_map, owned_sc_territories, home_territories)
 
 
-def get_starting_configs(tiles):
+def get_player_units(tiles):
     """Return a map of players to a set of pydip units they control"""
     configs = {}
     for tile in tiles.values():
@@ -95,9 +95,9 @@ def convert_order_to_pydip_commandhelper(tiles, aliases, order_, phase='retreats
         if phase == 'retreats':
             return RetreatCommandHelper(RetreatCommandType.DISBAND, retreat_map, unit_type, order.source_tile)
         elif phase == 'unit-placement':
-            raise NotImplementedError
+            return AdjustmentCommandHelper(AdjustmentCommandType.DISBAND, unit_type, order.source_tile)
     elif order.type == 'build':
-        raise NotImplementedError
+        return AdjustmentCommandHelper(AdjustmentCommandType.CREATE, unit_type, order.source_tile)
 
 
 def str_to_unit_type(unit_type_str):

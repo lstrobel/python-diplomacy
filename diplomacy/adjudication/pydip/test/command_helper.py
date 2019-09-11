@@ -96,9 +96,9 @@ class AdjustmentCommandType(Enum):
 
 class AdjustmentCommandHelper:
     """ AdjustmentCommandType, indicating type for command """
-    type = None
+    command_type = None
 
     def __init__(self, command_type, unit_type, territory):
-        self.type = command_type
+        self.command_type = command_type
         self.unit_type = unit_type
         self.territory = territory
