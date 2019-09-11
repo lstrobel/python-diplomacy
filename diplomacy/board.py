@@ -180,21 +180,9 @@ class Board:
             helper = AdjustmentHelper()
         else:  # diplomacy and retreats
             if self.phase == 'diplomacy':
-                # Add hold orders for every unit without an order
-                for tile in self.tiles.values():
-                    if (tile.unit is not None) and (tile.id not in tiles_with_orders):
-                        player_order_map[tile.unit.owner].append(
-                            convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
-                                                                 Order(tile.unit.owner, str(tile.id))))
+                self._add_default_hold_orders(player_order_map, tiles_with_orders)
             elif self.phase == 'retreats':
-                # Disband units that need to retreat but don't have an order
-                for player, move_dict in self._previous_results.items():
-                    for unit, move_set in move_dict.items():
-                        if (move_set is not None) and (int(unit.position) not in tiles_with_orders):
-                            player_order_map[player].append(
-                                convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
-                                                                     Order(player, unit.position, 'disband'),
-                                                                     retreat_map=self._previous_results))
+                self._add_default_disband_orders(player_order_map, tiles_with_orders)
 
             player_helpers = [PlayerHelper(player, orders) for player, orders in player_order_map.items()]
 
@@ -219,6 +207,24 @@ class Board:
         self.previous_orders = self.orders
         self._previous_results = results
         self.orders = []
+
+    def _add_default_disband_orders(self, player_order_map, tiles_with_orders):
+        """Disband units that need to retreat but don't have an order"""
+        for player, move_dict in self._previous_results.items():
+            for unit, move_set in move_dict.items():
+                if (move_set is not None) and (int(unit.position) not in tiles_with_orders):
+                    player_order_map[player].append(
+                        convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
+                                                             Order(player, unit.position, 'disband'),
+                                                             retreat_map=self._previous_results))
+
+    def _add_default_hold_orders(self, player_order_map, tiles_with_orders):
+        """Add hold orders for every unit without an order"""
+        for tile in self.tiles.values():
+            if (tile.unit is not None) and (tile.id not in tiles_with_orders):
+                player_order_map[tile.unit.owner].append(
+                    convert_order_to_pydip_commandhelper(self.tiles, self.alias_map,
+                                                         Order(tile.unit.owner, str(tile.id))))
 
     def _find_unit_to_disband(self, player):
         """Searches for a unit to disband if not disband orders were given, but one is needed.
